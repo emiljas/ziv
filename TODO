@@ -1,0 +1,12 @@
+ionic state restore - restore platforms and plugins
+
+cordova plugin add org.chromium.bluetooth --save
+
+idea:
+offline bluetooth chat
+
+//    setTimeout(function() {
+//      openFB.init({appId: '931523353582051'});
+//      openFB.login(function() {
+//      }, {scope: 'email'});
+//    }, 2000);

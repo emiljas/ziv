@@ -18,6 +18,32 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       // org.apache.cordova.statusbar required
       StatusBar.styleLightContent();
     }
+
+
+    var $ = document.querySelector.bind(document);
+
+    setTimeout(function() {
+      navigator.camera.getPicture(
+         function(fileLocation) {
+           var img = $("#img");
+           img.src = fileLocation;
+           //console.log("success", localStorage[fileLocation]);
+         },
+         function() {
+           console.log("errors", arguments);
+         },
+         {
+           destinationType: Camera.DestinationType.FILE_URI
+         }
+      );
+    }, 2000);
+
+
+
+
+
+
+
   });
 })
 

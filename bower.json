@@ -1,0 +1,7 @@
+{
+  "name": "ziv",
+  "version": "0.0.0",
+  "homepage": "https://github.com/emiljas/ziv",
+  "main": "www/js/index.js",
+  "license": "MIT"
+}

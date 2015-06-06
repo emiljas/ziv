@@ -1,4 +1,6 @@
 www/lib
+platforms
+plugins
 
 .DS_Store
 default.properties

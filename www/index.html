@@ -23,7 +23,7 @@
   <script id="templates/tabs.html" type="text/ng-template">
     <ion-tabs class="tabs-icon-top tabs-positive">
 
-      <ion-tab title="Home" icon="ion-home" href="#/tab/home">
+      <ion-tab title="dsldjHome" icon="ion-home" href="#/tab/home">
         <ion-nav-view name="home-tab"></ion-nav-view>
       </ion-tab>
 
@@ -41,7 +41,7 @@
   <script id="templates/home.html" type="text/ng-template">
     <ion-view view-title="Home">
       <ion-content class="padding">
-        <p>
+        <p ng-controller="CameraController">
           <a class="button icon icon-right ion-chevron-right" href="#/tab/facts">Scientific Facts</a>
         </p>
       </ion-content>
@@ -189,6 +189,17 @@
 
     .controller('HomeTabCtrl', function($scope) {
       console.log('HomeTabCtrl');
+    })
+
+    .controller("CameraController", function() {
+      navigator.camera.getPicture(onSuccess, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
+
+      function onSuccess() {
+
+      }
+
+      function onFail() {
+      }
     });
   </script>
 </body>

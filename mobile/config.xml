@@ -25,4 +25,5 @@
         <allow-intent href="itms-apps:*" />
     </platform>
     <engine name="android" spec="^4.0.0" />
+    <plugin name="cordova-plugin-file-transfer" spec="^1.1.0" />
 </widget>

@@ -121,12 +121,13 @@
     </ion-view>
   </script>
 
-  <script type="text/javascript" src="cordova.js"></script>
   <script type="text/javascript" src="lib/ionic/release/js/ionic.bundle.js"></script>
+  <script type="text/javascript" src="lib/ngCordova/dist/ng-cordova.js"></script>
+  <script type="text/javascript" src="cordova.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
 
   <script>
-    angular.module('ionicApp', ['ionic'])
+    angular.module('ionicApp', ['ionic', 'ngCordova'])
 
     .config(function($stateProvider, $urlRouterProvider) {
 
@@ -193,13 +194,22 @@
       console.log('HomeTabCtrl');
     })
 
-    .controller("CameraController", function() {
+    .controller("CameraController", function($cordovaFileTransfer) {
       setTimeout(function() {
         navigator.camera.getPicture(onSuccess, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
       }, 2000);
 
       function onSuccess(imageUrl) {
         document.querySelector("img").src = imageUrl;
+
+        $cordovaFileTransfer.upload("/upload", imageUrl)
+        .then(function(result) {
+          console.log("fileupload", "success", result);
+        }, function(err) {
+          console.log("fileupload", "error", err);
+        }, function (progress) {
+          console.log("fileupload", progress);
+        });
       }
 
       function onFail(event) {

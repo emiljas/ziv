@@ -5,6 +5,7 @@
   "main": "www/js/index.js",
   "license": "MIT",
   "dependencies": {
-    "ionic": "~1.0.0"
+    "ionic": "~1.0.0",
+    "ngCordova": "~0.1.17-alpha"
   }
 }

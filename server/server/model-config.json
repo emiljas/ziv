@@ -1,0 +1,39 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "User": {
+    "dataSource": "memoryDb"
+  },
+  "AccessToken": {
+    "dataSource": "memoryDb",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "memoryDb",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "memoryDb",
+    "public": false
+  },
+  "Role": {
+    "dataSource": "memoryDb",
+    "public": false
+  },
+  "Photo": {
+    "dataSource": "memoryDb",
+    "public": true
+  }
+}

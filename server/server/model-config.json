@@ -35,5 +35,9 @@
   "Photo": {
     "dataSource": "memoryDb",
     "public": true
+  },
+  "PhotoStorage": {
+    "dataSource": "fileSystem",
+    "public": true
   }
 }

@@ -202,13 +202,13 @@
       function onSuccess(imageUrl) {
         document.querySelector("img").src = imageUrl;
 
-        $cordovaFileTransfer.upload("/upload", imageUrl)
+        $cordovaFileTransfer.upload("http://10.0.2.2:3000/api/Photos/uploadFile", imageUrl)
         .then(function(result) {
-          console.log("fileupload", "success", result);
+          console.log("fileupload", "success", arguments);
         }, function(err) {
-          console.log("fileupload", "error", err);
+          console.log("fileupload", "error", arguments);
         }, function (progress) {
-          console.log("fileupload", progress);
+          console.log("fileupload", arguments);
         });
       }
 

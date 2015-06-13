@@ -1,17 +1,21 @@
 {
-  "memoryDb" : {
+  "memoryDb": {
     "name": "memoryDb",
     "connector": "memory"
   },
-
   "db": {
-    "name": "db",
-    "connector": "mysql",
     "host": "localhost",
     "port": 3306,
     "database": "ziv",
     "username": "root",
-    "password": "1234567"
+    "password": "1234567",
+    "name": "db",
+    "connector": "mysql"
+  },
+  "fileSystem": {
+    "name": "fileSystem",
+    "connector": "loopback-component-storage",
+    "provider": "filesystem",
+    "root": "/tmp"
   }
-
 }

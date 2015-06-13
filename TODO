@@ -1,0 +1,5 @@
+zapis pliku działa do /tmp/qwe
+
+DEBUG=* node server/server.js
+
+platforms/android/cordova/log

@@ -1,3 +1,4 @@
+var expect = require("chai").expect;
 var request = require('supertest');
 var app = require('../server/server');
 var DataSource = require('loopback-datasource-juggler').DataSource;
@@ -14,20 +15,28 @@ function requestJson(verb, url) {
 }
 
 describe('Photo', function() {
-
   it('test', function(done) {
     requestJson('post', '/api/Photos')
     .send({
       url: 'bla bla bla url bla',
     })
-    // .attach('file', 'test/fixtures/homeboy.jpg')
     .expect(HTTPStatus.OK)
     .end(function(err, res) {
-      console.log(res.body);
       if(err) done(err);
       else {
         done();
       }
+    });
+  });
+
+  it('uploadFile', function(done) {
+    app.models.PhotoStorage = {};
+    request(app)
+    .post('/api/Photos/uploadFile')
+    .field('name', 'my awesome avatar')
+    .attach('img.png', new Buffer(1))
+    .end(function(err, res) {
+      done(err);
     });
   });
 

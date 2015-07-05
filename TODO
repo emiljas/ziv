@@ -3,3 +3,12 @@ zapis pliku działa do /tmp/qwe
 DEBUG=* node server/server.js
 
 platforms/android/cordova/log
+
+listuje zainstalowane globalnie moduły:
+npm ls -g --depth=0
+
+co jest w projekcie do zaktualizowania:
+npm-check-updates
+
+adb devices
+cordova run android --target=XXXX

@@ -8,7 +8,6 @@ module.exports = function(Photo) {
     };
 
     Photo.app.models.PhotoStorage.upload(ctx.req, ctx.res, options, function (err, fileObj) {
-      console.log(options);
       if(err) {
         cb();
       }

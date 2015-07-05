@@ -42,10 +42,40 @@
   <script id="templates/home.html" type="text/ng-template">
     <ion-view view-title="Home">
       <ion-content class="padding">
-        <p ng-controller="CameraController">
-          <a class="button icon icon-right ion-chevron-right" href="#/tab/facts">Scientific Facts</a>
-          <img id="img" width="200" height="200" />
+        <p ng-controller="CameraController" style="text-align: center;">
+          <!-- <a class="button icon icon-right ion-chevron-right" href="#/tab/facts">Scientific Facts</a> -->
+          <!-- <img id="img" src="img/mountain.jpg" width="300" height="300" /> -->
+          <canvas id="editCanvas" width="300" height="300"></canvas>
         </p>
+
+
+
+        <style>
+          .wide-as-needed {
+            overflow: scroll;
+            white-space: nowrap;
+          }
+
+          .test {
+            float: left;
+            width: 80px;
+            height: 80px;
+            border: 1px solid red;
+          }
+        </style>
+
+
+      <filters-slider></filters-slider>
+
+        <ion-scroll direction="x" class="wide-as-needed">
+          <span ng-repeat="filter in filters" ng-click="applyFilter(filter)" style="display: inline-block; width: 80px; padding: 10px; border: 1px solid red; text-align: center;">
+            <img src="img/logo.png" width="50" height="50" />
+            <br />
+            <span style="font-size: 8px;">{{filter.name}}</span>
+          </span>
+        </ion-scroll>
+
+
       </ion-content>
     </ion-view>
   </script>
@@ -121,13 +151,15 @@
     </ion-view>
   </script>
 
+  <script type="text/javascript" src="lib/caman/dist/caman.full.js"></script>
   <script type="text/javascript" src="lib/ionic/release/js/ionic.bundle.js"></script>
   <script type="text/javascript" src="lib/ngCordova/dist/ng-cordova.js"></script>
   <script type="text/javascript" src="cordova.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
+  <script src="js/horizontal-slider.js"></script>
 
   <script>
-    angular.module('ionicApp', ['ionic', 'ngCordova'])
+    angular.module('ionicApp', ['ionic', 'ngCordova', 'ui.filtersSlider'])
 
     .config(function($stateProvider, $urlRouterProvider) {
 
@@ -191,30 +223,82 @@
     })
 
     .controller('HomeTabCtrl', function($scope) {
-      console.log('HomeTabCtrl');
+
+      var caman;
+      var canvas = document.getElementById('editCanvas');
+      Caman(canvas, 'img/mountain.jpg', function() {
+        caman = this;
+
+        this.resize({
+          width: 300,
+          height: 300
+        });
+        this.render();
+      });
+
+      $scope.applyFilter = function(filter) {
+        caman.revert();
+        if(filter.name == 'sunrise')
+          caman.sunrise();
+        else if(filter.name == 'nostalgia')
+          caman.nostalgia();
+        else if(filter.name == 'glowingSun')
+          caman.glowingSun();
+        else if(filter.name == 'hemingway')
+          caman.hemingway();
+        else if(filter.name == 'love')
+          caman.love();
+        else if(filter.name == 'grungy')
+          caman.grungy();
+        else if(filter.name == 'lomo')
+          caman.lomo();
+        else if(filter.name == 'oldBoot')
+          caman.oldBoot();
+        caman.render();
+      };
+
+      $scope.filters = [{
+        name: "sunrise"
+      }, {
+        name: "nostalgia"
+      }, {
+        name: "glowingSun"
+      }, {
+        name: "hemingway"
+      }, {
+        name: "love"
+      }, {
+        name: "grungy"
+      }, {
+        name: "lomo"
+      }, {
+        name: "oldBoot"
+      }, ];
     })
 
     .controller("CameraController", function($cordovaFileTransfer) {
-      setTimeout(function() {
-        navigator.camera.getPicture(onSuccess, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
-      }, 2000);
-
-      function onSuccess(imageUrl) {
-        document.querySelector("img").src = imageUrl;
-
-        $cordovaFileTransfer.upload("http://10.0.2.2:3000/api/Photos/upload", imageUrl)
-        .then(function(result) {
-          console.log("fileupload", "success", arguments);
-        }, function(err) {
-          console.log("fileupload", "error", arguments);
-        }, function (progress) {
-          console.log("fileupload", arguments);
-        });
-      }
-
-      function onFail(event) {
-        console.log(event);
-      }
+      // setTimeout(function() {
+      //   navigator.camera.getPicture(onSuccess, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
+      // }, 2000);
+      //
+      // function onSuccess(imageUrl) {
+      //   document.querySelector("img").src = imageUrl;
+      //
+      //   console.log("HERE");
+      //
+      //   $cordovaFileTransfer.upload("http://10.0.3.2:3000/api/Photos/upload", imageUrl)
+      //   .then(function(result) {
+      //     console.log("fileupload", "success", arguments);
+      //   }, function(err) {
+      //     console.log("fileupload", "error", arguments);
+      //   }, function (progress) {
+      //     console.log("fileupload", arguments);
+      //   });
+      // }
+      //
+      // function onFail(event) {
+      //   console.log(event);
+      // }
     });
   </script>
 </body>

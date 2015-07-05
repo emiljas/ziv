@@ -6,27 +6,28 @@
     "pretest": "jshint ."
   },
   "dependencies": {
-    "compression": "^1.0.3",
-    "cors": "^2.5.2",
-    "errorhandler": "^1.1.1",
+    "compression": "^1.5.0",
+    "cors": "^2.7.1",
+    "errorhandler": "^1.4.0",
     "http-status": "^0.2.0",
-    "loopback": "^2.14.0",
-    "loopback-boot": "^2.6.5",
+    "loopback": "^2.18.0",
+    "loopback-boot": "^2.8.2",
     "loopback-component-storage": "^1.5.0",
     "loopback-connector-mysql": "^2.1.1",
-    "loopback-datasource-juggler": "^2.19.0",
-    "serve-favicon": "^2.0.1",
+    "loopback-datasource-juggler": "^2.32.0",
+    "serve-favicon": "^2.3.0",
     "uuid": "^2.0.1"
   },
   "optionalDependencies": {
-    "loopback-explorer": "^1.1.0"
+    "loopback-explorer": "^1.8.0"
   },
   "devDependencies": {
     "chai": "^3.0.0",
-    "jshint": "^2.5.6",
-    "proxyquire": "^1.5.0",
+    "gulp-mocha": "^2.1.2",
+    "jshint": "^2.8.0",
+    "proxyquire": "^1.6.0",
     "rewire": "^2.3.4",
-    "sinon": "^1.15.3",
+    "sinon": "^1.15.4",
     "supertest": "^1.0.1"
   },
   "repository": {

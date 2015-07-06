@@ -19,6 +19,18 @@
         name: "lomo"
       }, {
         name: "oldBoot"
+      }, {
+        name: "jeszcze jeden"
+      }, {
+        name: "i jeszcze raz"
+      }, {
+        name: "niech żyje nam"
+      }, {
+        name: "x"
+      }, {
+        name: "y"
+      }, {
+        name: "z"
       }];
 
       // options.$ionicScrollDelegate.scrollTo(10);
@@ -27,19 +39,34 @@
       //   console.log(options.$ionicScrollDelegate.getScrollPosition());
       // }, 1000);
 
+      options.$scope.activeFilter = null
+
       options.$scope.applyFilter = function(id, filter) {
+        if(options.$scope.activeFilter)
+          options.$scope.activeFilter.isActive = false;
+        options.$scope.activeFilter = filter;
+        filter.isActive = true;
+
         var parentRect = document.getElementById('filtersParent').getBoundingClientRect();
         var rect = document.getElementById(id).getBoundingClientRect();
 
         // console.log(parentRect.left - rect.left);
 
         var offset = parentRect.left - rect.left;
+        var offset2 = offset + rect.width;
         var x = parentRect.width - (parentRect.left + rect.left + rect.width);
+        var x2 = x - rect.width;
         if(offset >= 0) {
           options.$ionicScrollDelegate.scrollBy(-offset - 2*rect.width + rect.width, 0, true);
         }
+        else if(offset2 >= 0) {
+          options.$ionicScrollDelegate.scrollBy(-offset - 2*rect.width + rect.width, 0, true);
+        }
         else if(x < 0) {
-          options.$ionicScrollDelegate.scrollBy(-x + rect.width, 0, true);
+          options.$ionicScrollDelegate.scrollBy(-x + rect.width - parentRect.left, 0, true);
+        }
+        else if(x2 < 0) {
+          options.$ionicScrollDelegate.scrollBy(-x + rect.width - parentRect.left, 0, true);
         }
 
         // var sliderWidth = parentRect.width;

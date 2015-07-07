@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Mon Jul 06 2015 23:01:04 GMT+0200 (CEST)
+// Generated on Mon Jul 06 2015 23:26:30 GMT+0200 (CEST)
 
 module.exports = function(config) {
   config.set({
@@ -10,14 +10,25 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'requirejs'],
+    frameworks: ['mocha', 'requirejs', 'chai'],
 
 
     // list of files / patterns to load in the browser
     files: [
+      'www/lib/angular/angular.js',
+      'www/lib/ngCordova/dist/ng-cordova.js',
+      'www/lib/angular-animate/angular-animate.js',
+      'www/lib/angular-sanitize/angular-sanitize.js',
+      'www/lib/angular-ui-router/release/angular-ui-router.js',
+      'www/lib/ionic/release/js/ionic.js',
+      'www/lib/ionic/release/js/ionic-angular.js',
+      'www/js/index.js',
+      'www/js/filters-slider.js',
+      'www/lib/angular-mocks/angular-mocks.js',
       'test-main.js',
-      {pattern: 'www/js', included: false},
-      {pattern: 'www/test', included: false}
+      {pattern: 'www/js/*.js', included: false},
+      {pattern: 'www/lib/**/*.js', included: false},
+      {pattern: 'www/test/*.js', included: false}
     ],
 
 

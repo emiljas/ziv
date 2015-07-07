@@ -40,14 +40,14 @@
         options.$scope.activeFilter = filter;
         filter.isActive = true;
 
-        var parentRect = document.getElementById('filtersParent').getBoundingClientRect();
-        var rect = document.getElementById(id).getBoundingClientRect();
+        var parentRect = options.element.querySelector('#filtersParent').getBoundingClientRect();
+        var rect = options.element.querySelector('#' + id).getBoundingClientRect();
 
         var offset = parentRect.left - rect.left;
         var offset2 = offset + rect.width;
         var x = parentRect.width - (parentRect.left + rect.left + rect.width);
         var x2 = x - rect.width;
-        
+
         if(offset >= 0) {
           options.$ionicScrollDelegate.scrollBy(-offset - 2*rect.width + rect.width, 0, true);
         }
@@ -64,11 +64,36 @@
     }
   });
 
-  angular.module('ui.filtersSlider', ['ionic'])
+
+  var strVar="";
+  strVar += "<style>";
+  strVar += ".active {";
+  strVar += "  background-color: blue!important;";
+  strVar += "}";
+  strVar += "::-webkit-scrollbar {";
+  strVar += "  display: none;";
+  strVar += "}";
+  strVar += "<\/style>";
+  strVar += "";
+  strVar += "<ion-scroll id=\"filtersParent\" direction=\"x\" class=\"wide-as-needed\">";
+  strVar += "  <span ng-repeat=\"filter in filters\" id=\"filter-{{$id}}\" ng-class=\"{active: filter.isActive}\" ng-click=\"applyFilter('filter-' + {{$id}}, filter)\"";
+  strVar += "   style=\"display: inline-block; width: 80px; padding: 10px; border: 1px solid red; text-align: center;\">";
+  strVar += "    <img src=\"img\/logo.png\" width=\"50\" height=\"50\" \/>";
+  strVar += "    <br \/>";
+  strVar += "    <span style=\"font-size: 8px;\">{{filter.name}}<\/span>";
+  strVar += "  <\/span>";
+  strVar += "<\/ion-scroll>";
+  strVar += "";
+
+
+  angular.module('ionicApp', ['ionic'])
+  // angular.module('ui.filtersSlider', ['ionic'])
     .directive('filtersSlider', ['$ionicScrollDelegate', '$location', function($ionicScrollDelegate, $location) {
       return {
         restrict: 'E',
-        templateUrl: 'templates/filters-slider.html',
+        template: strVar,
+        // arma-ng-html2js-preprocessor !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+        // templateUrl: 'templates/filters-slider.html',
         link: function($scope, $element, $attr) {
           var view = new FiltersSliderView({
             $scope: $scope,
@@ -79,5 +104,14 @@
         }
       };
     }]);
+
+  // angular.module('ionicApp', [])
+  // .directive('filtersSlider', function () {
+  //   return {
+  //       restrict: 'E',
+  //       replace: true,
+  //       template: '<span>{{1 + 1}}</span>'
+  //   };
+  // });
 
 })(window.ionic);

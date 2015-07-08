@@ -64,36 +64,12 @@
     }
   });
 
-
-  var strVar="";
-  strVar += "<style>";
-  strVar += ".active {";
-  strVar += "  background-color: blue!important;";
-  strVar += "}";
-  strVar += "::-webkit-scrollbar {";
-  strVar += "  display: none;";
-  strVar += "}";
-  strVar += "<\/style>";
-  strVar += "";
-  strVar += "<ion-scroll id=\"filtersParent\" direction=\"x\" class=\"wide-as-needed\">";
-  strVar += "  <span ng-repeat=\"filter in filters\" id=\"filter-{{$id}}\" ng-class=\"{active: filter.isActive}\" ng-click=\"applyFilter('filter-' + {{$id}}, filter)\"";
-  strVar += "   style=\"display: inline-block; width: 80px; padding: 10px; border: 1px solid red; text-align: center;\">";
-  strVar += "    <img src=\"img\/logo.png\" width=\"50\" height=\"50\" \/>";
-  strVar += "    <br \/>";
-  strVar += "    <span style=\"font-size: 8px;\">{{filter.name}}<\/span>";
-  strVar += "  <\/span>";
-  strVar += "<\/ion-scroll>";
-  strVar += "";
-
-
   angular.module('ionicApp', ['ionic'])
   // angular.module('ui.filtersSlider', ['ionic'])
     .directive('filtersSlider', ['$ionicScrollDelegate', '$location', function($ionicScrollDelegate, $location) {
       return {
         restrict: 'E',
-        template: strVar,
-        // arma-ng-html2js-preprocessor !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
-        // templateUrl: 'templates/filters-slider.html',
+        templateUrl: 'templates/filters-slider.html',
         link: function($scope, $element, $attr) {
           var view = new FiltersSliderView({
             $scope: $scope,

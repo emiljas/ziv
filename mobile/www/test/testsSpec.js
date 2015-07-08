@@ -5,17 +5,17 @@ define([], function() {
     var $compile, $rootScope;
 
     beforeEach(module('ionicApp'));
+    beforeEach(module('templates/filters-slider.html'));
 
-    beforeEach(inject(function(_$compile_, _$rootScope_, _$httpBackend_) {
+    beforeEach(inject(function(_$compile_, _$rootScope_, _$httpBackend_, _$templateCache_) {
       $compile = _$compile_;
       $rootScope = _$rootScope_;
-      _$httpBackend_.whenGET('templates/filters-slider.html').respond(200, '<a>dfg</a>');
     }));
 
-    it('real', function() {
+
+    it('add active class on click', function() {
       var element = angular.element('<filters-slider></filters-slider>');
       var slider = $compile(element)($rootScope);
-
       $rootScope.$digest();
 
       angular.element(element.find('span')[4]).triggerHandler('click');
@@ -25,6 +25,30 @@ define([], function() {
 
       // console.log(slider.html());
       // console.log(document.querySelectorAll('span').length);
+    });
+
+    it('move by click at the leftmost and the rightmost', function() {
+      var element = angular.element('<filters-slider></filters-slider>');
+      var slider = $compile(element)($rootScope);
+      $rootScope.$digest();
+
+      // console.log(element.childNotes.length);
+      var items = element[0].querySelectorAll('.scroll > span');
+
+      var itemWidth = angular.element(items[0]).css('width');
+
+      element.css({
+        width: parseInt(itemWidth) * 4
+      })
+
+      expect(angular.element(items[3]).hasClass('active')).to.equal(false);
+      angular.element(items[3]).triggerHandler('click');
+      expect(angular.element(items[3]).hasClass('active')).to.equal(true);
+
+      // angular.element(element.find('span')[4]).triggerHandler('click');
+      // angular.element(element.find('span')[5]).triggerHandler('click');
+      // angular.element(element.find('span')[6]).triggerHandler('click');
+      // expect(angular.element(element.find('span')[4]).hasClass('active')).to.equal(true);
     });
 
 

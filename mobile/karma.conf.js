@@ -7,7 +7,6 @@ module.exports = function(config) {
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
-
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['mocha', 'requirejs', 'chai'],
@@ -25,6 +24,7 @@ module.exports = function(config) {
       'www/js/index.js',
       'www/js/filters-slider.js',
       'www/lib/angular-mocks/angular-mocks.js',
+      'www/templates/*.html',
       'test-main.js',
       {pattern: 'www/js/*.js', included: false},
       {pattern: 'www/lib/**/*.js', included: false},
@@ -40,8 +40,13 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      'www/templates/*.html': ['ng-html2js']
     },
 
+    ngHtml2JsPreprocessor: {
+      // strip this from the file path
+      stripPrefix: 'www/',
+    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'

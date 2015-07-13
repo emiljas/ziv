@@ -1,36 +1,7 @@
 (function(ionic) {
   var FiltersSliderView = ionic.views.View.inherit({
     initialize: function(options) {
-
-      options.$scope.filters = [{
-        name: "Xunrise"
-      }, {
-        name: "nostalgia"
-      }, {
-        name: "glowingSun"
-      }, {
-        name: "hemingway"
-      }, {
-        name: "love"
-      }, {
-        name: "grungy"
-      }, {
-        name: "lomo"
-      }, {
-        name: "oldBoot"
-      }, {
-        name: "jeszcze jeden"
-      }, {
-        name: "i jeszcze raz"
-      }, {
-        name: "niech żyje nam"
-      }, {
-        name: "x"
-      }, {
-        name: "y"
-      }, {
-        name: "z"
-      }];
+      options.$scope.filters = options.filterService.filters;
 
       options.$scope.activeFilter = null
 
@@ -48,46 +19,44 @@
         var x = parentRect.width - (parentRect.left + rect.left + rect.width);
         var x2 = x - rect.width;
 
+var scrollD = options.$ionicScrollDelegate.$getByHandle('slider');
+
         if(offset >= 0) {
-          options.$ionicScrollDelegate.scrollBy(-offset - 2*rect.width + rect.width, 0, true);
+          scrollD.scrollBy(-offset - 2*rect.width + rect.width, 0, options.isAnimationEnabled);
         }
         else if(offset2 >= 0) {
-          options.$ionicScrollDelegate.scrollBy(-offset - 2*rect.width + rect.width, 0, true);
+          scrollD.scrollBy(-offset - 2*rect.width + rect.width, 0, options.isAnimationEnabled);
         }
         else if(x < 0) {
-          options.$ionicScrollDelegate.scrollBy(-x + rect.width - 2*parentRect.left, 0, true);
+          scrollD.scrollBy(-x + rect.width - 2*parentRect.left, 0, options.isAnimationEnabled);
         }
         else if(x2 < 0) {
-          options.$ionicScrollDelegate.scrollBy(-x + rect.width - 2*parentRect.left, 0, true);
+          scrollD.scrollBy(-x + rect.width - 2*parentRect.left, 0, options.isAnimationEnabled);
         }
       };
     }
   });
 
-  angular.module('ionicApp', ['ionic'])
-  // angular.module('ui.filtersSlider', ['ionic'])
-    .directive('filtersSlider', ['$ionicScrollDelegate', '$location', function($ionicScrollDelegate, $location) {
-      return {
-        restrict: 'E',
-        templateUrl: 'templates/filters-slider.html',
-        link: function($scope, $element, $attr) {
-          var view = new FiltersSliderView({
-            $scope: $scope,
-            element: $element[0],
-            $ionicScrollDelegate: $ionicScrollDelegate,
-            $location: $location
-          });
-        }
-      };
-    }]);
+  var directives = angular.module('directives', []);
 
-  // angular.module('ionicApp', [])
-  // .directive('filtersSlider', function () {
-  //   return {
-  //       restrict: 'E',
-  //       replace: true,
-  //       template: '<span>{{1 + 1}}</span>'
-  //   };
-  // });
+  directives
+  .directive('filtersSlider', ['$ionicScrollDelegate', '$location', 'filterService', 'IS_ANIMATION_ENABLED'
+  , function($ionicScrollDelegate, $location, filterService, isAnimationEnabled) {
+    console.log(isAnimationEnabled);
+    return {
+      restrict: 'E',
+      templateUrl: 'templates/filters-slider.html',
+      link: function($scope, $element, $attr) {
+        var view = new FiltersSliderView({
+          $scope: $scope,
+          filterService: filterService,
+          element: $element[0],
+          $ionicScrollDelegate: $ionicScrollDelegate,
+          $location: $location,
+          isAnimationEnabled: isAnimationEnabled
+        });
+      }
+    };
+  }]);
 
 })(window.ionic);

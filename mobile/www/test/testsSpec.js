@@ -2,77 +2,77 @@ define([], function() {
 
   describe('tests', function() {
 
-    var $compile, $rootScope;
+    var $compile, $rootScope, $timeout;
 
-    beforeEach(module('ionicApp'));
+    beforeEach(function() {
+      module('ionicApp');
+
+      module(function($provide) {
+        $provide.factory('filterService', function() {
+          return {
+            filters: [{
+                name: "1"
+              }, {
+                name: "2"
+              }, {
+                name: "3"
+              }, {
+                name: "4"
+              }, {
+                name: "5"
+              }, {
+                name: "6"
+              }, {
+                name: "7"
+              }, {
+                name: "8"
+              }]
+            };
+        });
+
+        $provide.constant('IS_ANIMATION_ENABLED', false);
+      });
+    });
     beforeEach(module('templates/filters-slider.html'));
 
-    beforeEach(inject(function(_$compile_, _$rootScope_, _$httpBackend_, _$templateCache_) {
+    beforeEach(inject(function(_$compile_, _$rootScope_, _$httpBackend_, _$templateCache_, _$timeout_) {
       $compile = _$compile_;
       $rootScope = _$rootScope_;
+      $timeout = _$timeout_;
     }));
 
-
-    it('add active class on click', function() {
-      var element = angular.element('<filters-slider></filters-slider>');
-      var slider = $compile(element)($rootScope);
-      $rootScope.$digest();
-
-      angular.element(element.find('span')[4]).triggerHandler('click');
-
-      expect(angular.element(element.find('span')[4]).hasClass('active')).to.equal(true);
-
-
-      // console.log(slider.html());
-      // console.log(document.querySelectorAll('span').length);
-    });
-
     it('move by click at the leftmost and the rightmost', function() {
-      var element = angular.element('<filters-slider></filters-slider>');
+      var element = angular.element(
+  '<ion-view style="width: 200px;">' +
+      '<filters-slider></filters-slider>' +
+  '</ion-view>'
+      );
+
       var slider = $compile(element)($rootScope);
       $rootScope.$digest();
 
-      // console.log(element.childNotes.length);
-      var items = element[0].querySelectorAll('.scroll > span');
+      angular.element(document.body).append(element);
 
+      document.querySelector('.scroll').style.marginTop = '50px';
+      var items = document.body.querySelectorAll('.scroll > span');
       var itemWidth = angular.element(items[0]).css('width');
 
-      element.css({
-        width: parseInt(itemWidth) * 4
-      })
+      var rightmostItem = items[2];
+      var rightmostItemRect = rightmostItem.getBoundingClientRect();
+      var rightmostItemX = rightmostItemRect.left;
+      var rightmostItemY = rightmostItemRect.top;
 
-      expect(angular.element(items[3]).hasClass('active')).to.equal(false);
-      angular.element(items[3]).triggerHandler('click');
-      expect(angular.element(items[3]).hasClass('active')).to.equal(true);
+      function getFilterNameFromDomElement(element) {
+        return angular.element(element).data().$scope.filter.name;
+      }
 
-      // angular.element(element.find('span')[4]).triggerHandler('click');
-      // angular.element(element.find('span')[5]).triggerHandler('click');
-      // angular.element(element.find('span')[6]).triggerHandler('click');
-      // expect(angular.element(element.find('span')[4]).hasClass('active')).to.equal(true);
+      rightmostItem = document.elementFromPoint(rightmostItemX, rightmostItemY);
+
+      angular.element(rightmostItem).triggerHandler('click');
+      $timeout.flush();
+
+      rightmostItem = document.elementFromPoint(rightmostItemX, rightmostItemY);
+      expect(getFilterNameFromDomElement(rightmostItem)).to.equal('4');
     });
-
-
-
-    // it('Replaces the element with the appropriate content', function() {
-    //   // Compile a piece of HTML containing the directive
-    //   var element = $compile("<a-great-eye></a-great-eye>")($rootScope);
-    //   // fire all the watches, so the scope expression {{1 + 1}} will be evaluated
-    //   $rootScope.$digest();
-    //   // Check that the compiled element contains the templated content
-    //
-    //   expect(element.html()).toContain("lidless, wreathed in flame, 2 times");
-    // });
-
-
-    it('first', function() {
-
-      "a".should.equal("a");
-      // expect(true).to.equal(false);
-
-
-    });
-
-
   });
-
 });

@@ -14,17 +14,27 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'www/lib/angular/angular.js',
+      'www/css/index.css',
+      'www/lib/ionic/release/css/ionic.css',
+
+      // 'www/lib/angular/angular.js',
+      // 'www/lib/ngCordova/dist/ng-cordova.js',
+      // 'www/lib/angular-animate/angular-animate.js',
+      // 'www/lib/angular-sanitize/angular-sanitize.js',
+      // 'www/lib/angular-ui-router/release/angular-ui-router.js',
+      // 'www/lib/ionic/release/js/ionic.js',
+      // 'www/lib/ionic/release/js/ionic-angular.js',
+      'www/lib/ionic/release/js/ionic.bundle.js',
       'www/lib/ngCordova/dist/ng-cordova.js',
-      'www/lib/angular-animate/angular-animate.js',
-      'www/lib/angular-sanitize/angular-sanitize.js',
-      'www/lib/angular-ui-router/release/angular-ui-router.js',
-      'www/lib/ionic/release/js/ionic.js',
-      'www/lib/ionic/release/js/ionic-angular.js',
+
       'www/js/index.js',
+      'www/js/services.js',
+      'www/js/filters-slider-settings.js',
       'www/js/filters-slider.js',
       'www/lib/angular-mocks/angular-mocks.js',
       'www/templates/*.html',
+
+
       'test-main.js',
       {pattern: 'www/js/*.js', included: false},
       {pattern: 'www/lib/**/*.js', included: false},
@@ -36,6 +46,7 @@ module.exports = function(config) {
     exclude: [
     ],
 
+    browserNoActivityTimeout: 240000,
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
@@ -74,7 +85,6 @@ module.exports = function(config) {
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: ['Chrome'],
-
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits

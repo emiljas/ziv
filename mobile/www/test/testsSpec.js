@@ -2,40 +2,45 @@ define([], function() {
 
   describe('tests', function() {
 
-    var $compile, $rootScope, $timeout;
+    var $compile;
+    var $rootScope;
+    var $timeout;
 
     beforeEach(function() {
-      module('ionicApp');
+      module('zivApp');
 
       module(function($provide) {
         $provide.factory('filterService', function() {
           return {
             filters: [{
-                name: "1"
-              }, {
-                name: "2"
-              }, {
-                name: "3"
-              }, {
-                name: "4"
-              }, {
-                name: "5"
-              }, {
-                name: "6"
-              }, {
-                name: "7"
-              }, {
-                name: "8"
-              }]
-            };
+              name: '1'
+            }, {
+              name: '2'
+            }, {
+              name: '3'
+            }, {
+              name: '4'
+            }, {
+              name: '5'
+            }, {
+              name: '6'
+            }, {
+              name: '7'
+            }, {
+              name: '8'
+            }]
+          };
         });
 
-        $provide.constant('IS_ANIMATION_ENABLED', false);
+        $provide.constant('settings', {
+          isAnimationEnabled: false
+        });
       });
     });
-    beforeEach(module('templates/filters-slider.html'));
+    beforeEach(module('directives/filters-slider/filters-slider-template.html'));
 
-    beforeEach(inject(function(_$compile_, _$rootScope_, _$httpBackend_, _$templateCache_, _$timeout_) {
+    beforeEach(inject(function(_$compile_, _$rootScope_, _$httpBackend_,
+      _$templateCache_, _$timeout_) {
       $compile = _$compile_;
       $rootScope = _$rootScope_;
       $timeout = _$timeout_;
@@ -43,9 +48,9 @@ define([], function() {
 
     it('move by click at the leftmost and the rightmost', function() {
       var element = angular.element(
-  '<ion-view style="width: 200px;">' +
-      '<filters-slider></filters-slider>' +
-  '</ion-view>'
+        '<ion-view style="width: 200px;">' +
+        '<filters-slider></filters-slider>' +
+        '</ion-view>'
       );
 
       var slider = $compile(element)($rootScope);

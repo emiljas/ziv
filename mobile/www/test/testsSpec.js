@@ -3,8 +3,9 @@ define([], function() {
   describe('tests', function() {
 
     var $compile;
-    var $rootScope;
+    var scope;
     var $timeout;
+    var $ionicScrollDelegate;
 
     beforeEach(function() {
       module('zivApp');
@@ -12,23 +13,15 @@ define([], function() {
       module(function($provide) {
         $provide.factory('filterService', function() {
           return {
-            filters: [{
-              name: '1'
-            }, {
-              name: '2'
-            }, {
-              name: '3'
-            }, {
-              name: '4'
-            }, {
-              name: '5'
-            }, {
-              name: '6'
-            }, {
-              name: '7'
-            }, {
-              name: '8'
-            }]
+            getFilters: function() {
+              return [
+                {name: '1'},
+                {name: '2'},
+                {name: '3'},
+                {name: '4'},
+                {name: '5'}
+              ];
+            }
           };
         });
 
@@ -37,47 +30,108 @@ define([], function() {
         });
       });
     });
-    beforeEach(module('directives/filters-slider/filters-slider-template.html'));
+
+    beforeEach(
+      module('directives/filters-slider/filters-slider-template.html')
+    );
 
     beforeEach(inject(function(_$compile_, _$rootScope_, _$httpBackend_,
-      _$templateCache_, _$timeout_) {
+      _$templateCache_, _$timeout_, _$ionicScrollDelegate_) {
       $compile = _$compile_;
-      $rootScope = _$rootScope_;
+      scope = _$rootScope_.$new();
       $timeout = _$timeout_;
+      $ionicScrollDelegate = _$ionicScrollDelegate_;
     }));
 
-    it('move by click at the leftmost and the rightmost', function() {
-      var element = angular.element(
-        '<ion-view style="width: 200px;">' +
-        '<filters-slider></filters-slider>' +
-        '</ion-view>'
-      );
-
-      var slider = $compile(element)($rootScope);
-      $rootScope.$digest();
-
-      angular.element(document.body).append(element);
-
-      document.querySelector('.scroll').style.marginTop = '50px';
-      var items = document.body.querySelectorAll('.scroll > span');
-      var itemWidth = angular.element(items[0]).css('width');
-
-      var rightmostItem = items[2];
-      var rightmostItemRect = rightmostItem.getBoundingClientRect();
-      var rightmostItemX = rightmostItemRect.left;
-      var rightmostItemY = rightmostItemRect.top;
-
-      function getFilterNameFromDomElement(element) {
-        return angular.element(element).data().$scope.filter.name;
-      }
-
-      rightmostItem = document.elementFromPoint(rightmostItemX, rightmostItemY);
-
-      angular.element(rightmostItem).triggerHandler('click');
-      $timeout.flush();
-
-      rightmostItem = document.elementFromPoint(rightmostItemX, rightmostItemY);
-      expect(getFilterNameFromDomElement(rightmostItem)).to.equal('4');
+    afterEach(function() {
+      angular.element(document.querySelector('ion-view')).remove();
     });
+
+    var ITEM_WIDTH = 80;
+    var SLIDER_WIDTH = 4 * ITEM_WIDTH;
+    var HTML =
+      '<ion-view>' +
+        '<filters-slider></filters-slider>' +
+      '</ion-view>';
+
+    it('click on last visible item move slider forward', function() {
+      test({
+        scrollPosition: 0,
+        clickedItemPosition: 4,
+        expectedScrollPosition: ITEM_WIDTH
+      });
+    });
+
+    it('click on before last visible item move slider forward', function() {
+      test({
+        scrollPosition: ITEM_WIDTH - 1,
+        clickedItemPosition: 4,
+        expectedScrollPosition: ITEM_WIDTH
+      });
+    });
+
+    it('click on first visible item move slider backward', function() {
+      test({
+        scrollPosition: ITEM_WIDTH,
+        clickedItemPosition: 2,
+        expectedScrollPosition: 0
+      });
+    });
+
+    it('click on second visible item move slider backward', function() {
+      test({
+        scrollPosition: 2 * ITEM_WIDTH - 1,
+        clickedItemPosition: 3,
+        expectedScrollPosition: ITEM_WIDTH
+      });
+    });
+
+    //args: scrollPosition, clickedItemPosition, expectedScrollPosition
+    function test(args) {
+      createSliderView();
+      var ionView = document.querySelector('ion-view');
+      ionView.style.width = SLIDER_WIDTH + 'px';
+      scrollTo(args.scrollPosition);
+      clickItem(args.clickedItemPosition);
+      expectScrollPosition(args.expectedScrollPosition);
+    };
+
+    function createSliderView() {
+      var element = angular.element(HTML);
+      var slider = $compile(element)(scope);
+      scope.$digest();
+      angular.element(document.body).append(element);
+    }
+
+    function scrollTo(position) {
+      $ionicScrollDelegate.scrollBy(position);
+      flushTimeout();
+    }
+
+    function clickItem(position) {
+      var items = document.body.querySelectorAll('.scroll > span');
+      var clickedItem = items[position - 1];
+      angular.element(clickedItem).triggerHandler('click');
+      flushTimeout();
+    }
+
+    function expectScrollPosition(expectedPosition) {
+      var position = $ionicScrollDelegate.getScrollPosition().left;
+      expect(position).to.equal(expectedPosition);
+    }
+
+    function flushTimeout() {
+      try {
+        $timeout.flush();
+      }
+      catch (err) {
+      }
+    }
+
+    function getFilterNameFromDomElement(element) {
+      return angular.element(element).data().$scope.filter.name;
+    }
+
   });
+
 });

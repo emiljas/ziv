@@ -1,35 +1,37 @@
 var services = angular.module('services', []);
 
-services.factory('filterService', [function(){
+services.factory('filterService', [function() {
   return {
-    filters: [{
-        name: "Xunrise"
+    getFilters: function() {
+      return [{
+        name: 'Xunrise'
       }, {
-        name: "nostalgia"
+        name: 'nostalgia'
       }, {
-        name: "glowingSun"
+        name: 'glowingSun'
       }, {
-        name: "hemingway"
+        name: 'hemingway'
       }, {
-        name: "love"
+        name: 'love'
       }, {
-        name: "grungy"
+        name: 'grungy'
       }, {
-        name: "lomo"
+        name: 'lomo'
       }, {
-        name: "oldBoot"
+        name: 'oldBoot'
       }, {
-        name: "jeszcze jeden"
+        name: 'jeszcze jeden'
       }, {
-        name: "i jeszcze raz"
+        name: 'i jeszcze raz'
       }, {
-        name: "niech żyje nam"
+        name: 'niech żyje nam'
       }, {
-        name: "x"
+        name: 'x'
       }, {
-        name: "y"
+        name: 'y'
       }, {
-        name: "z"
-      }]
+        name: 'z'
+      }];
+    }
   };
 }]);

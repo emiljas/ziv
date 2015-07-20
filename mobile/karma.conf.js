@@ -5,7 +5,7 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: 'www/',
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
@@ -13,8 +13,8 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'www/css/index.css',
-      'www/lib/ionic/release/css/ionic.css',
+      'css/index.css',
+      'lib/ionic/release/css/ionic.css',
 
       // 'www/lib/angular/angular.js',
       // 'www/lib/ngCordova/dist/ng-cordova.js',
@@ -23,19 +23,18 @@ module.exports = function(config) {
       // 'www/lib/angular-ui-router/release/angular-ui-router.js',
       // 'www/lib/ionic/release/js/ionic.js',
       // 'www/lib/ionic/release/js/ionic-angular.js',
-      'www/lib/ionic/release/js/ionic.bundle.js',
-      'www/lib/ngCordova/dist/ng-cordova.js',
+      // 'www/lib/lodash/lodash.min.js',
+      'lib/ionic/release/js/ionic.bundle.js',
+      'lib/ngCordova/dist/ng-cordova.js',
 
-      'www/js/index.js',
-      'www/js/services.js',
-      'www/directives/filters-slider/filters-slider-directive.js',
-      'www/lib/angular-mocks/angular-mocks.js',
-      'www/directives/**/*.html',
+      'js/index.js',
+      'js/services.js',
+      // 'www/directives/filters-slider/filters-slider-directive.js',
+      'lib/angular-mocks/angular-mocks.js',
+      'directives/**/*.html',
 
-      'test-main.js',
-      {pattern: 'www/js/*.js', included: false},
-      {pattern: 'www/lib/**/*.js', included: false},
-      {pattern: 'www/test/*.js', included: false}
+      '../test-main.js',
+      {pattern: '**/*.js', included: false}
     ],
 
     // list of files to exclude
@@ -47,7 +46,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'www/directives/**/*.html': ['ng-html2js']
+      'directives/**/*.html': ['ng-html2js']
     },
 
     ngHtml2JsPreprocessor: {

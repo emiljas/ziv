@@ -1,4 +1,4 @@
-define([], function() {
+define(['directives/filters-slider/filters-slider-directive'], function() {
 
   describe('tests', function() {
 
@@ -19,7 +19,8 @@ define([], function() {
                 {name: '2'},
                 {name: '3'},
                 {name: '4'},
-                {name: '5'}
+                {name: '5'},
+                {name: '6'}
               ];
             }
           };
@@ -54,14 +55,6 @@ define([], function() {
         '<filters-slider></filters-slider>' +
       '</ion-view>';
 
-    it('click on last visible item move slider forward', function() {
-      test({
-        scrollPosition: 0,
-        clickedItemPosition: 4,
-        expectedScrollPosition: ITEM_WIDTH
-      });
-    });
-
     it('click on before last visible item move slider forward', function() {
       test({
         scrollPosition: ITEM_WIDTH - 1,
@@ -70,17 +63,25 @@ define([], function() {
       });
     });
 
-    it('click on first visible item move slider backward', function() {
+    it('click on before before last visible item DONT move slider forward', function() {
       test({
         scrollPosition: ITEM_WIDTH,
-        clickedItemPosition: 2,
-        expectedScrollPosition: 0
+        clickedItemPosition: 4,
+        expectedScrollPosition: ITEM_WIDTH
       });
     });
 
     it('click on second visible item move slider backward', function() {
       test({
-        scrollPosition: 2 * ITEM_WIDTH - 1,
+        scrollPosition: ITEM_WIDTH + 1,
+        clickedItemPosition: 3,
+        expectedScrollPosition: ITEM_WIDTH
+      });
+    });
+
+    it('click on third visible item DONT move slider backward', function() {
+      test({
+        scrollPosition: ITEM_WIDTH,
         clickedItemPosition: 3,
         expectedScrollPosition: ITEM_WIDTH
       });
@@ -90,8 +91,10 @@ define([], function() {
     function test(args) {
       createSliderView();
       var ionView = document.querySelector('ion-view');
+      ionView.style.margin = "5px";
       ionView.style.width = SLIDER_WIDTH + 'px';
       scrollTo(args.scrollPosition);
+      expectScrollPosition(args.scrollPosition);
       clickItem(args.clickedItemPosition);
       expectScrollPosition(args.expectedScrollPosition);
     };

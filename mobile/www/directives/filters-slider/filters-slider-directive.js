@@ -1,11 +1,17 @@
 define(['lib/lodash/lodash'], function(_) {
+  console.log('filters-slider-directive');
+
   var FiltersSliderView = ionic.views.View.inherit({
-    self: this,
+    // self: this,
 
     initialize: function(options) {
-      _.assign(self, options);
+      var $scope = options.$scope;
+      var element = options.element;
+      var filterService = options.filterService;
+      var $ionicScrollDelegate = options.$ionicScrollDelegate;
+      var isAnimationEnabled = options.isAnimationEnabled;
 
-      $scope.filters = self.filterService.getFilters();
+      $scope.filters = filterService.getFilters();
 
       $scope.activeFilter = null
 
@@ -37,12 +43,11 @@ define(['lib/lodash/lodash'], function(_) {
     }
   });
 
-  var directives = angular.module('directives', []);
+  // var directives = angular.module('directives', []);
 
-  directives
-  .directive('filtersSlider', ['$ionicScrollDelegate',
-  'filterService', 'settings',
-  function($ionicScrollDelegate, filterService, settings) {
+  // .directive('filtersSlider', ['$ionicScrollDelegate',
+  // 'filterService', 'settings',
+  function filtersSliderDirective($ionicScrollDelegate, filterService, settings) {
     return {
       restrict: 'E',
       templateUrl: 'directives/filters-slider/filters-slider-template.html',
@@ -57,8 +62,10 @@ define(['lib/lodash/lodash'], function(_) {
         });
       }
     };
-  }])
+  };/*])
   .constant('settings', {
     isAnimationEnabled: true
-  });
+  });*/
+
+  return filtersSliderDirective;
 });

@@ -1,37 +1,41 @@
-var services = angular.module('services', []);
+define([], function() {
+  console.log('services.js');
 
-services.factory('filterService', [function() {
-  return {
-    getFilters: function() {
-      return [{
-        name: 'Xunrise'
-      }, {
-        name: 'nostalgia'
-      }, {
-        name: 'glowingSun'
-      }, {
-        name: 'hemingway'
-      }, {
-        name: 'love'
-      }, {
-        name: 'grungy'
-      }, {
-        name: 'lomo'
-      }, {
-        name: 'oldBoot'
-      }, {
-        name: 'jeszcze jeden'
-      }, {
-        name: 'i jeszcze raz'
-      }, {
-        name: 'niech żyje nam'
-      }, {
-        name: 'x'
-      }, {
-        name: 'y'
-      }, {
-        name: 'z'
-      }];
-    }
-  };
-}]);
+  function filterService() {
+    return {
+      getFilters: function() {
+        return [{
+          name: 'Xunrise'
+        }, {
+          name: 'nostalgia'
+        }, {
+          name: 'glowingSun'
+        }, {
+          name: 'hemingway'
+        }, {
+          name: 'love'
+        }, {
+          name: 'grungy'
+        }, {
+          name: 'lomo'
+        }, {
+          name: 'oldBoot'
+        }, {
+          name: 'jeszcze jeden'
+        }, {
+          name: 'i jeszcze raz'
+        }, {
+          name: 'niech żyje nam'
+        }, {
+          name: 'x'
+        }, {
+          name: 'y'
+        }, {
+          name: 'z'
+        }];
+      }
+    };
+  }
+
+  return filterService;
+});

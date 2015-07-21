@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="zivApp">
+<html>
 
 <head>
   <meta charset="utf-8">
@@ -137,13 +137,17 @@
     </ion-view>
   </script>
 
-  <script src="lib/lodash.min.js"></script>
-  <script type="text/javascript" src="lib/caman/dist/caman.full.js"></script>
-  <script type="text/javascript" src="lib/ionic/release/js/ionic.bundle.js"></script>
-  <script type="text/javascript" src="lib/ngCordova/dist/ng-cordova.js"></script>
-  <script type="text/javascript" src="cordova.js"></script>
-  <script type="text/javascript" src="js/index.js"></script>
-  <script src="js/services.js"></script>
-  <script src="directives/filters-slider/filters-slider-directive.js"></script>
+
+  <!-- // <script src="lib/lodash.min.js"></script> -->
+  <script src="lib/caman/dist/caman.full.js"></script>
+  <script src="lib/ionic/release/js/ionic.bundle.js"></script>
+  <script src="lib/ngCordova/dist/ng-cordova.js"></script>
+  <script src="cordova.js"></script>
+
+  <!-- // <script src="js/index.js"></script> -->
+  <script data-main="js/app" src="lib/requirejs/require.js"></script>
+  <!-- // <script src="js/config.js"></script> -->
+  <!-- // <script src="js/services.js"></script> -->
+  <!-- // <script src="directives/filters-slider/filters-slider-directive.js"></script> -->
 </body>
 </html>

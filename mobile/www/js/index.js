@@ -1,13 +1,10 @@
 define([
-// 'lib/ionic/release/js/ionic.bundle',
-// 'lib/ngCordova/dist/ng-cordova',
  'js/config',
  'js/services',
- 'directives/filters-slider/filters-slider-directive'
+ 'directives/filters-slider/filters-slider-directive',
+ 'directives/filters-slider/filters-slider-consts',
 
-], function(config, filterService, filtersSliderDirective) {
-  console.log("index.js");
-
+], function(config, filterService, filtersSliderDirective, filtersSliderConsts) {
   var app = {
     initialize: function() {
       this.bindEvents();
@@ -27,17 +24,13 @@ define([
 
   app.initialize();
 
-
   var zivApp = angular.module('zivApp', [
         'ionic', 'ngCordova'
       ]);
 
-
   zivApp.config(config);
   zivApp.factory('filterService', filterService);
-  zivApp.constant('settings', {
-    isAnimationEnabled: true
-  });
+  zivApp.constant('settings', filtersSliderConsts);
   zivApp.directive('filtersSlider', filtersSliderDirective);
 
   angular.module('zivApp').controller('HomeTabCtrl', function($scope) {

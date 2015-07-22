@@ -1,43 +1,38 @@
 define(['lib/lodash/lodash'], function(_) {
-  console.log('filters-slider-directive');
 
   var FiltersSliderView = ionic.views.View.inherit({
-    // self: this,
-
     initialize: function(options) {
-      var $scope = options.$scope;
-      var element = options.element;
-      var filterService = options.filterService;
-      var $ionicScrollDelegate = options.$ionicScrollDelegate;
-      var isAnimationEnabled = options.isAnimationEnabled;
+      var self = this;
+      _.assign(self, options);
 
-      $scope.filters = filterService.getFilters();
+      self.$scope.filters = self.filterService.getFilters();
 
-      $scope.activeFilter = null
+      self.$scope.activeFilter = null
 
-      $scope.applyFilter = function(id, filter) {
-        if ($scope.activeFilter) {
-          $scope.activeFilter.isActive = false;
+      self.$scope.applyFilter = function(id, filter) {
+        if (self.$scope.activeFilter) {
+          self.$scope.activeFilter.isActive = false;
         }
-        $scope.activeFilter = filter;
+        self.$scope.activeFilter = filter;
         filter.isActive = true;
 
-        var filtersParent = element.querySelector('.filtersParent');
+        var filtersParent = self.element.querySelector('.filtersParent');
         var parentRect = filtersParent.getBoundingClientRect();
-        var filterEl = element.querySelector('#' + id);
+        var filterEl = self.element.querySelector('#' + id);
         var rect = filterEl.getBoundingClientRect();
 
         var delegateHandle = filtersParent.getAttribute('delegate-handle');
-        var scrollDelegate = $ionicScrollDelegate.$getByHandle(delegateHandle);
+        var scrollDelegate =
+          self.$ionicScrollDelegate.$getByHandle(delegateHandle);
 
         var forwardDistance = -parentRect.width - parentRect.left +
                               rect.left + 2 * rect.width;
         var backwardDistance = -parentRect.left + rect.left - rect.width;
 
         if (forwardDistance > 0) {
-          scrollDelegate.scrollBy(forwardDistance, 0, isAnimationEnabled);
+          scrollDelegate.scrollBy(forwardDistance, 0, self.isAnimationEnabled);
         } else if (backwardDistance < 0) {
-          scrollDelegate.scrollBy(backwardDistance, 0, isAnimationEnabled);
+          scrollDelegate.scrollBy(backwardDistance, 0, self.isAnimationEnabled);
         }
       };
     }
@@ -47,7 +42,8 @@ define(['lib/lodash/lodash'], function(_) {
 
   // .directive('filtersSlider', ['$ionicScrollDelegate',
   // 'filterService', 'settings',
-  function filtersSliderDirective($ionicScrollDelegate, filterService, settings) {
+  function filtersSliderDirective($ionicScrollDelegate,
+    filterService, settings) {
     return {
       restrict: 'E',
       templateUrl: 'directives/filters-slider/filters-slider-template.html',
@@ -68,4 +64,5 @@ define(['lib/lodash/lodash'], function(_) {
   });*/
 
   return filtersSliderDirective;
+  
 });

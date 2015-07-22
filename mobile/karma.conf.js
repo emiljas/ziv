@@ -27,8 +27,8 @@ module.exports = function(config) {
       'lib/ionic/release/js/ionic.bundle.js',
       'lib/ngCordova/dist/ng-cordova.js',
 
-      'js/index.js',
-      'js/services.js',
+      // 'js/index.js',
+      // 'js/services.js',
       // 'www/directives/filters-slider/filters-slider-directive.js',
       'lib/angular-mocks/angular-mocks.js',
       'directives/**/*.html',

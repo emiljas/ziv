@@ -1,6 +1,11 @@
 define([], function() {
+  var f = false;
+
   function config($stateProvider, $urlRouterProvider) {
-    $stateProvider
+    // console.log($stateProvider);
+
+    if (f) {
+      $stateProvider
       .state('tabs', {
         url: '/tab',
         abstract: true,
@@ -56,7 +61,8 @@ define([], function() {
         }
       });
 
-    $urlRouterProvider.otherwise('/tab/home');
+      // $urlRouterProvider.otherwise('/tab/home');
+    }
   }
 
   config.$inject = ['$stateProvider', '$urlRouterProvider'];

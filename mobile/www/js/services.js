@@ -1,6 +1,4 @@
 define([], function() {
-  console.log('services.js');
-
   function filterService() {
     return {
       getFilters: function() {

@@ -8,8 +8,11 @@ define(['js/index', 'directives/filters-slider/filters-slider-directive'], funct
     var $ionicScrollDelegate;
 
     beforeEach(function() {
-      angular.mock.module('zivApp');
-      // module('zivApp');
+      var app = angular.mock.module('zivApp');
+      // console.log(app);
+      // var app = module('zivApp');
+      // var app = module('zivApp', []);
+      // app.service('$state', function() { return {} });
 
       module(function($provide) {
         $provide.factory('filterService', function() {
@@ -39,6 +42,14 @@ define(['js/index', 'directives/filters-slider/filters-slider-directive'], funct
       });
     });
 
+    beforeEach(module(function($provide) {
+  $provide.value('$ionicTemplateCache', function(){} );
+}));
+
+beforeEach(module(function($urlRouterProvider) {
+  $urlRouterProvider.deferIntercept();
+}));
+
     beforeEach(
       module('directives/filters-slider/filters-slider-template.html')
     );
@@ -49,6 +60,8 @@ define(['js/index', 'directives/filters-slider/filters-slider-directive'], funct
       scope = _$rootScope_.$new();
       $timeout = _$timeout_;
       $ionicScrollDelegate = _$ionicScrollDelegate_;
+
+      // console.log(_$state_);
     }));
 
     afterEach(function() {

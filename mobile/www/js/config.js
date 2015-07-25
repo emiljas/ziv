@@ -1,6 +1,5 @@
 define([], function() {
   function config($stateProvider, $urlRouterProvider) {
-
     $stateProvider
     .state('tabs', {
       url: '/tab',

@@ -1,18 +1,17 @@
-define(['js/index', 'directives/filters-slider/filters-slider-directive'], function() {
+define(['js/index',
+'directives/filters-slider/filters-slider-directive'], function() {
 
   describe('tests', function() {
-
     var $compile;
     var scope;
     var $timeout;
     var $ionicScrollDelegate;
 
+
+
+
     beforeEach(function() {
-      var app = angular.mock.module('zivApp');
-      // console.log(app);
-      // var app = module('zivApp');
-      // var app = module('zivApp', []);
-      // app.service('$state', function() { return {} });
+      module('zivApp');
 
       module(function($provide) {
         $provide.factory('filterService', function() {
@@ -30,38 +29,84 @@ define(['js/index', 'directives/filters-slider/filters-slider-directive'], funct
           };
         });
 
-        // $provide.provider('$stateProvider', {
-        //   $get: function() {
-        //     return {};
-        //   }
-        // });
-
         $provide.constant('settings', {
           isAnimationEnabled: false
         });
       });
     });
 
-    beforeEach(module(function($provide) {
-  $provide.value('$ionicTemplateCache', function(){} );
-}));
-
-beforeEach(module(function($urlRouterProvider) {
-  $urlRouterProvider.deferIntercept();
-}));
-
     beforeEach(
       module('directives/filters-slider/filters-slider-template.html')
     );
 
+
+    // beforeEach(
+    //   module('templates/tabs.html')
+    // );
+    // 
+    // beforeEach(
+    //   module('templates/home.html')
+    // );
+    //
+    // beforeEach(
+    //   module('templates/about.html')
+    // );
+
+
+
+
+
+
+
+
+
+    // beforeEach(module(function($urlRouterProvider) {
+    //   $urlRouterProvider.deferIntercept();
+    // }));
+    //
+    // beforeEach(module(function($ionicConfigProvider) {
+    //   $ionicConfigProvider.templates.maxPrefetch(0);
+    // }));
+    //
+    // beforeEach(module(function($provide) {
+    //   $provide.value('$ionicTemplateCache', function(){} );
+    // }));
+
+
+    beforeEach(module(function($urlRouterProvider) {
+      $urlRouterProvider.deferIntercept();
+    }));
+
+    beforeEach(module(function($ionicConfigProvider) {
+      $ionicConfigProvider.templates.maxPrefetch(0);
+    }));
+
+    beforeEach(module(function($provide) {
+      $provide.value('$ionicTemplateCache', function(){} );
+    }));
+
+
+
+
+
+
+
+
+
+
+
+
     beforeEach(inject(function(_$compile_, _$rootScope_, _$httpBackend_,
-      _$templateCache_, _$timeout_, _$ionicScrollDelegate_, _$state_) {
+      _$templateCache_, _$timeout_, _$ionicScrollDelegate_,
+      _$browser_) {
       $compile = _$compile_;
       scope = _$rootScope_.$new();
       $timeout = _$timeout_;
       $ionicScrollDelegate = _$ionicScrollDelegate_;
+      _$browser_['cookies'] = function() { return {}; }
 
-      // console.log(_$state_);
+      // _$httpBackend_.expectGET("templates/tabs.html").respond({ hello: 'world'})
+      // _$httpBackend_.expectGET("templates/home.html").respond({ hello: 'world'})
     }));
 
     afterEach(function() {
@@ -83,7 +128,8 @@ beforeEach(module(function($urlRouterProvider) {
       });
     });
 
-    it('click on before before last visible item DONT move slider forward', function() {
+    it('click on before before last visible item DONT move slider forward',
+    function() {
       test({
         scrollPosition: ITEM_WIDTH,
         clickedItemPosition: 4,
@@ -111,7 +157,7 @@ beforeEach(module(function($urlRouterProvider) {
     function test(args) {
       createSliderView();
       var ionView = document.querySelector('ion-view');
-      ionView.style.margin = "5px";
+      ionView.style.margin = '5px';
       ionView.style.width = SLIDER_WIDTH + 'px';
       scrollTo(args.scrollPosition);
       expectScrollPosition(args.scrollPosition);

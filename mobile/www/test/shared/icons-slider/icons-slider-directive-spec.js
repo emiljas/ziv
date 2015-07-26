@@ -8,28 +8,7 @@ function() {
 
     beforeEach(function() {
       module('shared');
-
-      // angular.module('zivApp', ['ionic', 'ngCordova'])
-      // .directive('filtersSlider', filtersSliderDirective);
-
-      // module('zivApp');
-
       module(function($provide) {
-        // $provide.factory('filterService', function() {
-        //   return {
-        //     getFilters: function() {
-        //       return [
-        //         {name: '1'},
-        //         {name: '2'},
-        //         {name: '3'},
-        //         {name: '4'},
-        //         {name: '5'},
-        //         {name: '6'}
-        //       ];
-        //     }
-        //   };
-        // });
-
         $provide.constant('zivIconsSlider.settings', {
           isAnimationEnabled: false
         });
@@ -40,9 +19,12 @@ function() {
       module('js/shared/icons-slider/icons-slider-template.html')
     );
 
-    beforeEach(inject(function(_$compile_, _$rootScope_, _$httpBackend_,
-      _$templateCache_, _$timeout_, _$ionicScrollDelegate_,
-      _$browser_) {
+    beforeEach(inject(function(
+      _$compile_,
+      _$rootScope_,
+      _$timeout_,
+      _$ionicScrollDelegate_
+      ) {
       $compile = _$compile_;
       scope = _$rootScope_.$new();
 

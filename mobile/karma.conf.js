@@ -31,7 +31,7 @@ module.exports = function(config) {
       // 'js/services.js',
       // 'www/directives/filters-slider/filters-slider-directive.js',
       'lib/angular-mocks/angular-mocks.js',
-      'js/directives/**/*.html',
+      'js/**/*.html',
 
       '../test-main.js',
       {pattern: '**/*.js', included: false}
@@ -46,7 +46,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'js/directives/**/*.html': ['ng-html2js']
+      'js/**/*.html': ['ng-html2js']
     },
 
     ngHtml2JsPreprocessor: {

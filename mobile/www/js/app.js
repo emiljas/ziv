@@ -1,10 +1,13 @@
 define([
  'js/config',
  'js/services',
+ 'js/shared/shared'
 ], function(
   config,
-  filterService,
-  filtersSliderDirective) {
+  filterService
+  ) {
+    console.log('app');
+
   var app = {
     initialize: function() {
       this.bindEvents();
@@ -25,7 +28,7 @@ define([
   app.initialize();
 
   var zivApp = angular.module('zivApp', [
-        'ionic', 'ngCordova'
+        'ionic', 'ngCordova', 'shared'
       ]);
 
   zivApp.config(config);

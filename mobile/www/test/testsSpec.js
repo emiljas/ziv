@@ -1,6 +1,5 @@
-define(['directives/filters-slider/filters-slider-directive'],
-function(filtersSliderDirective) {
-
+define(['js/shared/shared'],
+function() {
   describe('tests', function() {
     var $compile;
     var scope;
@@ -8,35 +7,37 @@ function(filtersSliderDirective) {
     var $ionicScrollDelegate;
 
     beforeEach(function() {
+      module('shared');
+
       // angular.module('zivApp', ['ionic', 'ngCordova'])
       // .directive('filtersSlider', filtersSliderDirective);
 
       // module('zivApp');
 
       module(function($provide) {
-        $provide.factory('filterService', function() {
-          return {
-            getFilters: function() {
-              return [
-                {name: '1'},
-                {name: '2'},
-                {name: '3'},
-                {name: '4'},
-                {name: '5'},
-                {name: '6'}
-              ];
-            }
-          };
-        });
+        // $provide.factory('filterService', function() {
+        //   return {
+        //     getFilters: function() {
+        //       return [
+        //         {name: '1'},
+        //         {name: '2'},
+        //         {name: '3'},
+        //         {name: '4'},
+        //         {name: '5'},
+        //         {name: '6'}
+        //       ];
+        //     }
+        //   };
+        // });
 
-        $provide.constant('settings', {
+        $provide.constant('zivIconsSlider.settings', {
           isAnimationEnabled: false
         });
       });
     });
 
     beforeEach(
-      module('js/directives/filters-slider/filters-slider-template.html')
+      module('js/shared/icons-slider/icons-slider-template.html')
     );
 
     beforeEach(inject(function(_$compile_, _$rootScope_, _$httpBackend_,
@@ -44,6 +45,16 @@ function(filtersSliderDirective) {
       _$browser_) {
       $compile = _$compile_;
       scope = _$rootScope_.$new();
+
+      scope.filters = [
+        {name: '1'},
+        {name: '2'},
+        {name: '3'},
+        {name: '4'},
+        {name: '5'},
+        {name: '6'}
+      ];
+
       $timeout = _$timeout_;
       $ionicScrollDelegate = _$ionicScrollDelegate_;
     }));
@@ -56,7 +67,7 @@ function(filtersSliderDirective) {
     var SLIDER_WIDTH = 4 * ITEM_WIDTH;
     var HTML =
       '<ion-view>' +
-        '<filters-slider></filters-slider>' +
+        '<ziv-icons-slider></ziv-icons-slider>' +
       '</ion-view>';
 
     it('click on before last visible item move slider forward', function() {

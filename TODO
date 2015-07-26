@@ -12,3 +12,9 @@ npm-check-updates
 
 adb devices
 cordova run android --target=XXXX
+
+
+dzięki testom z icons-slider-directive:
+nie używać service w directive
+wiele sliderów na jednej stronie
+nie TDD, ponieważ nowa technologia

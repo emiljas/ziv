@@ -1,11 +1,8 @@
-define(['js/app', 'lodash'], function(app, _) {
-
+define(['lodash'], function(_) {
   var IconsSliderView = ionic.views.View.inherit({
     initialize: function(options) {
       var self = this;
       _.assign(self, options);
-
-      // self.$scope.filters = self.filterService.getFilters();
 
       self.$scope.activeFilter = null
 
@@ -38,8 +35,7 @@ define(['js/app', 'lodash'], function(app, _) {
     }
   });
 
-  function iconsSliderDirective($ionicScrollDelegate,
-    filterService, settings) {
+  function iconsSliderDirective($ionicScrollDelegate, settings) {
     return {
       restrict: 'E',
       templateUrl: 'js/shared/icons-slider/icons-slider-template.html',
@@ -47,7 +43,6 @@ define(['js/app', 'lodash'], function(app, _) {
       link: function($scope, $element, $attr) {
         var view = new IconsSliderView({
           $scope: $scope,
-          filterService: filterService,
           element: $element[0],
           $ionicScrollDelegate: $ionicScrollDelegate,
           isAnimationEnabled: settings.isAnimationEnabled
@@ -56,12 +51,10 @@ define(['js/app', 'lodash'], function(app, _) {
     };
   };
 
-  return app
-  .directive('zivIconsSlider', [
+  iconsSliderDirective.$inject = [
     '$ionicScrollDelegate',
-    'filterService',
-    'settings', iconsSliderDirective])
-  .constant('settings', {
-    isAnimationEnabled: true
-  });
+    'zivIconsSlider.settings'
+  ];
+
+  return iconsSliderDirective;
 });

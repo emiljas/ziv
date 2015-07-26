@@ -1,5 +1,5 @@
-define(['js/index',
-'directives/filters-slider/filters-slider-directive'], function() {
+define(['directives/filters-slider/filters-slider-directive'],
+function(filtersSliderDirective) {
 
   describe('tests', function() {
     var $compile;
@@ -7,11 +7,11 @@ define(['js/index',
     var $timeout;
     var $ionicScrollDelegate;
 
-
-
-
     beforeEach(function() {
-      module('zivApp');
+      // angular.module('zivApp', ['ionic', 'ngCordova'])
+      // .directive('filtersSlider', filtersSliderDirective);
+
+      // module('zivApp');
 
       module(function($provide) {
         $provide.factory('filterService', function() {
@@ -36,65 +36,8 @@ define(['js/index',
     });
 
     beforeEach(
-      module('directives/filters-slider/filters-slider-template.html')
+      module('js/directives/filters-slider/filters-slider-template.html')
     );
-
-
-    // beforeEach(
-    //   module('templates/tabs.html')
-    // );
-    // 
-    // beforeEach(
-    //   module('templates/home.html')
-    // );
-    //
-    // beforeEach(
-    //   module('templates/about.html')
-    // );
-
-
-
-
-
-
-
-
-
-    // beforeEach(module(function($urlRouterProvider) {
-    //   $urlRouterProvider.deferIntercept();
-    // }));
-    //
-    // beforeEach(module(function($ionicConfigProvider) {
-    //   $ionicConfigProvider.templates.maxPrefetch(0);
-    // }));
-    //
-    // beforeEach(module(function($provide) {
-    //   $provide.value('$ionicTemplateCache', function(){} );
-    // }));
-
-
-    beforeEach(module(function($urlRouterProvider) {
-      $urlRouterProvider.deferIntercept();
-    }));
-
-    beforeEach(module(function($ionicConfigProvider) {
-      $ionicConfigProvider.templates.maxPrefetch(0);
-    }));
-
-    beforeEach(module(function($provide) {
-      $provide.value('$ionicTemplateCache', function(){} );
-    }));
-
-
-
-
-
-
-
-
-
-
-
 
     beforeEach(inject(function(_$compile_, _$rootScope_, _$httpBackend_,
       _$templateCache_, _$timeout_, _$ionicScrollDelegate_,
@@ -103,10 +46,6 @@ define(['js/index',
       scope = _$rootScope_.$new();
       $timeout = _$timeout_;
       $ionicScrollDelegate = _$ionicScrollDelegate_;
-      _$browser_['cookies'] = function() { return {}; }
-
-      // _$httpBackend_.expectGET("templates/tabs.html").respond({ hello: 'world'})
-      // _$httpBackend_.expectGET("templates/home.html").respond({ hello: 'world'})
     }));
 
     afterEach(function() {

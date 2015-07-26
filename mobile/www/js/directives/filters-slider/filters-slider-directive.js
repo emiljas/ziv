@@ -1,4 +1,4 @@
-require(['js/app', 'lodash'], function(app, _) {
+define(['js/app', 'lodash'], function(app, _) {
 
   var FiltersSliderView = ionic.views.View.inherit({
     initialize: function(options) {
@@ -38,15 +38,11 @@ require(['js/app', 'lodash'], function(app, _) {
     }
   });
 
-  // var directives = angular.module('directives', []);
-
-  // .directive('filtersSlider', ['$ionicScrollDelegate',
-  // 'filterService', 'settings',
   function filtersSliderDirective($ionicScrollDelegate,
     filterService, settings) {
     return {
       restrict: 'E',
-      templateUrl: 'directives/filters-slider/filters-slider-template.html',
+      templateUrl: 'js/directives/filters-slider/filters-slider-template.html',
       scope: true,
       link: function($scope, $element, $attr) {
         var view = new FiltersSliderView({
@@ -58,13 +54,14 @@ require(['js/app', 'lodash'], function(app, _) {
         });
       }
     };
-  };/*])
+  };
+
+  return app
+  .directive('filtersSlider', [
+    '$ionicScrollDelegate',
+    'filterService',
+    'settings', filtersSliderDirective])
   .constant('settings', {
     isAnimationEnabled: true
-  });*/
-
-
-app.directive('filtersSlider', filtersSliderDirective);
-console.log('directive');
-
+  });
 });

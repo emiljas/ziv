@@ -1,5 +1,6 @@
-define(['app/index'
-
+require([
+  'js/app',
+ 'js/directives/filters-slider/filters-slider-directive',
 ], function() {
-  console.log('WORKS');
+  angular.bootstrap(document, ['zivApp']);
 });

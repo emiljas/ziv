@@ -1,6 +1,6 @@
 require([
   'js/app',
- 'js/directives/filters-slider/filters-slider-directive',
+ 'js/shared/icons-slider/icons-slider-directive',
 ], function() {
   angular.bootstrap(document, ['zivApp']);
 });

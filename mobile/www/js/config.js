@@ -6,20 +6,19 @@ define([], function() {
       abstract: true,
       templateUrl: 'templates/tabs.html'
     })
-    .state('tabs.home', {
-      url: '/home',
+    .state('tabs.editPhoto', {
+      url: '/editPhoto',
       views: {
-        'home-tab': {
-          templateUrl: 'templates/home.html',
-          controller: 'HomeTabCtrl'
+        'edit-photo-tab': {
+          templateUrl: 'templates/editPhoto.html'
         }
       }
     })
-    .state('tabs.facts', {
-      url: '/facts',
+    .state('tabs.choosePhoto', {
+      url: '/choosePhoto',
       views: {
-        'home-tab': {
-          templateUrl: 'templates/facts.html'
+        'choose-photo-tab': {
+          templateUrl: 'templates/choosePhoto.html'
         }
       }
     })
@@ -56,7 +55,7 @@ define([], function() {
       }
     });
 
-    $urlRouterProvider.otherwise('/tab/home');
+    $urlRouterProvider.otherwise('/tab/editPhoto');
   }
 
   config.$inject = ['$stateProvider', '$urlRouterProvider'];

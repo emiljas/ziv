@@ -26,15 +26,16 @@ function() {
       _$ionicScrollDelegate_
       ) {
       $compile = _$compile_;
+
       scope = _$rootScope_.$new();
 
-      scope.filters = [
-        {name: '1'},
-        {name: '2'},
-        {name: '3'},
-        {name: '4'},
-        {name: '5'},
-        {name: '6'}
+      scope.sampleOfItems = [
+        {name: '1', click: function() {}},
+        {name: '2', click: function() {}},
+        {name: '3', click: function() {}},
+        {name: '4', click: function() {}},
+        {name: '5', click: function() {}},
+        {name: '6', click: function() {}}
       ];
 
       $timeout = _$timeout_;
@@ -49,7 +50,7 @@ function() {
     var SLIDER_WIDTH = 4 * ITEM_WIDTH;
     var HTML =
       '<ion-view>' +
-        '<ziv-icons-slider></ziv-icons-slider>' +
+        '<ziv-icons-slider items="sampleOfItems"></ziv-icons-slider>' +
       '</ion-view>';
 
     it('click on before last visible item move slider forward', function() {

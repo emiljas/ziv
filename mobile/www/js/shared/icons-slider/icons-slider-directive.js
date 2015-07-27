@@ -13,6 +13,8 @@ define(['lodash'], function(_) {
         self.$scope.activeFilter = filter;
         filter.isActive = true;
 
+        self.$scope.activeFilter.click();
+
         var filtersParent = self.element.querySelector('.filtersParent');
         var parentRect = filtersParent.getBoundingClientRect();
         var filterEl = self.element.querySelector('#' + id);
@@ -39,7 +41,9 @@ define(['lodash'], function(_) {
     return {
       restrict: 'E',
       templateUrl: 'js/shared/icons-slider/icons-slider-template.html',
-      scope: true,
+      scope: {
+        items: '=items'
+      },
       link: function($scope, $element, $attr) {
         var view = new IconsSliderView({
           $scope: $scope,

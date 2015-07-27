@@ -33,7 +33,7 @@ module.exports = function(config) {
       'lib/angular-mocks/angular-mocks.js',
       'js/**/*.html',
 
-      '../test-main.js',
+      'requirejs-config.js',
       {pattern: '**/*.js', included: false}
     ],
 

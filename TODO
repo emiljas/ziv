@@ -17,4 +17,14 @@ cordova run android --target=XXXX
 dzięki testom z icons-slider-directive:
 nie używać service w directive
 wiele sliderów na jednej stronie
-nie TDD, ponieważ nowa technologia
+nie TDD, ponieważ nowa technologia, ale doprowadziło
+do np. usunięcie serwisu z dyrektywy
+
+opis lustrzanej struktury folder z funkcjonalnością - folder z testami do niej
+zrobić screen z commita: move spec to icons-slider folder
+
+icons-slider-directive
+dodanie class gryzie się z ng-class, zaleta testów?
+zmiana moduły shared, niezdefiniowana zmienna
+ustalenie struktury projektu, prefixy directive i css
+poczucie bezpieczeństwa przy refactoringu, amd itp.

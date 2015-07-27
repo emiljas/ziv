@@ -1,24 +1,15 @@
-<style>
-.wide-as-needed {
-  overflow: scroll;
-  white-space: nowrap;
-}
-</style>
-
-<style>
-.active {
-  background-color: blue!important;
-}
-::-webkit-scrollbar {
-  display: none;
-}
-</style>
-
-<ion-scroll direction="x" delegate-handle="slider_delegate_handle_{{$id}}" class="filtersParent wide-as-needed">
-  <span ng-repeat="filter in filters" id="filter-{{$id}}" ng-class="{active: filter.isActive}" ng-click="applyFilter('filter-' + {{$id}}, filter)"
-   style="display: inline-block; width: 80px; padding: 10px; border: 1px solid red; text-align: center;">
+<ion-scroll
+  direction="x"
+  delegate-handle="slider_delegate_handle_{{$id}}"
+  class="ziv-icons-slider filtersParent ziv-wide-as-needed">
+  <span
+    ng-repeat="filter in items"
+    id="filter-{{$id}}"
+    ng-class="{'ziv-active': filter.isActive}"
+    ng-click="applyFilter('filter-' + {{$id}}, filter)"
+    class="ziv-item">
     <img src="img/logo.png" width="50" height="50" />
     <br />
-    <span style="font-size: 8px;">{{filter.name}}</span>
+    <span class="ziv-title">{{filter.name}}</span>
   </span>
 </ion-scroll>

@@ -19,49 +19,47 @@
   </ion-nav-bar>
 
   <ion-nav-view>
-
-
-
-
-
-
   </ion-nav-view>
 
 
   <script id="templates/tabs.html" type="text/ng-template">
     <ion-tabs class="tabs-icon-top tabs-positive">
 
-      <ion-tab title="dsldjHome" icon="ion-home" href="#/tab/home">
-        <ion-nav-view name="home-tab"></ion-nav-view>
+      <ion-tab title="Edit" icon="ion-home" href="#/tab/editPhoto">
+        <ion-nav-view name="edit-photo-tab"></ion-nav-view>
       </ion-tab>
 
       <ion-tab title="About" icon="ion-ios-information" href="#/tab/about">
         <ion-nav-view name="about-tab"></ion-nav-view>
       </ion-tab>
 
-      <ion-tab title="Contact" icon="ion-ios-world" ui-sref="tabs.contact">
-        <ion-nav-view name="contact-tab"></ion-nav-view>
+      <ion-tab title="Choose" icon="ion-ios-world" ui-sref="tabs.choosePhoto">
+        <ion-nav-view name="choose-photo-tab"></ion-nav-view>
       </ion-tab>
 
     </ion-tabs>
   </script>
 
-  <script id="templates/home.html" type="text/ng-template">
-    <ion-view view-title="Home">
-      <ion-content class="padding">
-        <p ng-controller="CameraController" style="text-align: center;">
+  <script id="templates/editPhoto.html" type="text/ng-template">
+    <ion-view view-title="Edit photo">
+      <ion-content ng-controller="editPhotoController" class="padding">
+        <p style="text-align: center;">
           <!-- <a class="button icon icon-right ion-chevron-right" href="#/tab/facts">Scientific Facts</a> -->
-          <canvas id="editCanvas" width="100" height="100"></canvas>
         </p>
 
+        <ziv-photo filter="filter"></ziv-photo>
+        <ziv-icons-slider items="filters"></ziv-icons-slider>
 
+      </ion-content>
+    </ion-view>
+  </script>
 
-
-      <ziv-icons-slider></ziv-icons-slider>
-      <ziv-icons-slider></ziv-icons-slider>
-
-
-
+  <script id="templates/choosePhoto.html" type="text/ng-template">
+    <ion-view view-title="Choose photo">
+      <ion-content class="padding">
+        <p style="text-align: center;">
+        </p>
+        works!
       </ion-content>
     </ion-view>
   </script>

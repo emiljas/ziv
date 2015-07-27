@@ -1,13 +1,10 @@
 define([
  'js/config',
- 'js/services',
- 'js/shared/shared'
+ 'js/shared/shared',
+ 'js/edit-photo/edit-photo'
 ], function(
-  config,
-  filterService
+  config
   ) {
-    console.log('app');
-
   var app = {
     initialize: function() {
       this.bindEvents();
@@ -28,68 +25,19 @@ define([
   app.initialize();
 
   var zivApp = angular.module('zivApp', [
-        'ionic', 'ngCordova', 'shared'
+        'ionic',
+        'ngCordova',
+        'shared',
+        'editPhoto'
       ]);
 
   zivApp.config(config);
-  zivApp.factory('filterService', filterService);
 
   angular.module('zivApp').controller('HomeTabCtrl', function($scope) {
 
-    var caman;
-    var canvas = document.getElementById('editCanvas');
-    Caman(canvas, 'img/mountain.jpg', function() {
-      caman = this;
+  });
 
-      this.resize({
-        width: 100,
-        height: 100
-      });
-      this.render();
-    });
-
-    $scope.applyFilter = function(filter) {
-      caman.revert();
-      if (filter.name == 'sunrise') {
-        caman.sunrise();
-      } else if (filter.name == 'nostalgia') {
-        caman.nostalgia();
-      } else if (filter.name == 'glowingSun') {
-        caman.glowingSun();
-      } else if (filter.name == 'hemingway') {
-        caman.hemingway();
-      } else if (filter.name == 'love') {
-        caman.love();
-      } else if (filter.name == 'grungy') {
-        caman.grungy();
-      } else if (filter.name == 'lomo') {
-        caman.lomo();
-      } else if (filter.name == 'oldBoot') {
-        caman.oldBoot();
-      }
-      caman.render();
-    };
-
-    $scope.filters = [{
-      name: 'sunrise'
-    }, {
-      name: 'nostalgia'
-    }, {
-      name: 'glowingSun'
-    }, {
-      name: 'hemingway'
-    }, {
-      name: 'love'
-    }, {
-      name: 'grungy'
-    }, {
-      name: 'lomo'
-    }, {
-      name: 'oldBoot'
-    }];
-  })
-
-  .controller('CameraController', function($cordovaFileTransfer) {
+  // .controller('CameraController', function($cordovaFileTransfer) {
     // setTimeout(function() {
     //   navigator.camera.getPicture(onSuccess, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
     // }, 2000);
@@ -112,7 +60,7 @@ define([
     // function onFail(event) {
     //   console.log(event);
     // }
-  });
+  // });
 
   return zivApp;
 });

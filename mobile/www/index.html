@@ -8,6 +8,7 @@
   <meta name="msapplication-tap-highlight" content="no">
   <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
   <link rel="stylesheet" type="text/css" href="css/index.css">
+  <link rel="stylesheet" type="text/css" href="lib/jr-crop/dist/jr-crop.css">
   <title>Hello World</title>
   <link href="lib/ionic/release/css/ionic.css" rel="stylesheet">
 </head>
@@ -42,7 +43,7 @@
 
   <script id="templates/editPhoto.html" type="text/ng-template">
     <ion-view view-title="Edit photo">
-      <ion-content ng-controller="editPhotoController" class="padding">
+      <ion-content class="padding">
         <p style="text-align: center;">
           <!-- <a class="button icon icon-right ion-chevron-right" href="#/tab/facts">Scientific Facts</a> -->
         </p>
@@ -56,10 +57,16 @@
 
   <script id="templates/choosePhoto.html" type="text/ng-template">
     <ion-view view-title="Choose photo">
-      <ion-content class="padding">
+      <ion-content ng-controller="CameraController" class="padding">
         <p style="text-align: center;">
         </p>
-        works!
+
+        <img width="300" height="100" ng-src="{{image}}">
+
+        <button ng-click="getPictureFromCamera()" style="width: 300px; height: 300px;">from camera</button>
+
+        <button ng-click="choosePicture()">choose</button>
+
       </ion-content>
     </ion-view>
   </script>
@@ -135,12 +142,11 @@
     </ion-view>
   </script>
 
-
-  <!-- // <script src="lib/lodash.min.js"></script> -->
   <script src="lib/caman/dist/caman.full.js"></script>
   <script src="lib/ionic/release/js/ionic.bundle.js"></script>
   <script src="lib/ngCordova/dist/ng-cordova.js"></script>
   <script src="cordova.js"></script>
+  <script src="lib/jr-crop/dist/jr-crop.min.js"></script>
 
   <!-- // <script src="js/index.js"></script> -->
   <script data-main="requirejs-config" src="lib/requirejs/require.js"></script>

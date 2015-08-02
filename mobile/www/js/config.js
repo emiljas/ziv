@@ -7,10 +7,12 @@ define([], function() {
       templateUrl: 'templates/tabs.html'
     })
     .state('tabs.editPhoto', {
-      url: '/editPhoto',
+      url: '/editPhoto?photoUrl=:',
       views: {
         'edit-photo-tab': {
-          templateUrl: 'templates/editPhoto.html'
+          controller: 'editPhotoController',
+          templateUrl: 'templates/editPhoto.html',
+          params: ['photoUrl'],
         }
       }
     })
@@ -55,7 +57,8 @@ define([], function() {
       }
     });
 
-    $urlRouterProvider.otherwise('/tab/editPhoto');
+    $urlRouterProvider.otherwise('/tab/choosePhoto');
+    // $urlRouterProvider.otherwise('/tab/editPhoto');
   }
 
   config.$inject = ['$stateProvider', '$urlRouterProvider'];

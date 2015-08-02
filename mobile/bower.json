@@ -9,7 +9,8 @@
     "ionic": "~1.0.1",
     "ngCordova": "~0.1.17-alpha",
     "lodash": "~3.10.0",
-    "requirejs": "~2.1.19"
+    "requirejs": "~2.1.19",
+    "jr-crop": "https://github.com/JrSchild/jr-crop.git#~1.0.0"
   },
   "devDependencies": {
     "mocha": "~2.2.5",

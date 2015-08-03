@@ -42,16 +42,17 @@
   </script>
 
   <script id="templates/editPhoto.html" type="text/ng-template">
+  <style>
+  .scroll { height: 100%!important; }
+  </style>
+
     <ion-view view-title="Edit photo">
       <ion-content class="padding">
-        <p style="text-align: center;">
-          <!-- <a class="button icon icon-right ion-chevron-right" href="#/tab/facts">Scientific Facts</a> -->
-        </p>
-
         <ziv-photo filter="filter"></ziv-photo>
-        <ziv-icons-slider items="filters"></ziv-icons-slider>
-
       </ion-content>
+      <div style="height: 107px;" class="bar bar-footer bar-balanced">
+        <ziv-icons-slider items="filters"></ziv-icons-slider>
+      </div>
     </ion-view>
   </script>
 

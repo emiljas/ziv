@@ -12,38 +12,38 @@ define([
   function CamanService() {
     var self = this;
 
-    // self.createCanvas = function() {
-    //   self.canvas = document.createElement('canvas');
-    //   self.canvas.width = 300;
-    //   self.canvas.height = 300;
-    // };
-
     self.setCanvas = function(canvas) {
+      self.isRefreshed = false;
+      self.photoUrl = null;
+
       self.canvas = document.createElement('canvas');
-      self.canvas.width = 300;
-      self.canvas.height = 300;
+      self.originalCanvas = canvas;
+    };
 
+    self.refresh = function(width) {
+      console.log(width);
 
-      // console.log(canvas.toDataURL());
-      self.canvas.getContext('2d').drawImage(canvas, 0, 0, 300, 300);
+      self.isRefreshed = true;
+      var context = self.canvas.getContext('2d');
+      self.canvas.width = width;
+      self.canvas.height = width;
+      context.clearRect(0, 0, self.canvas.width, self.canvas.height);
+      context.drawImage(self.originalCanvas, 0, 0, width, width);
+      self.drawIf();
+    };
 
-      // self.canvas = canvas;
-      // self.canvas.width = 300;
-      // self.canvas.height = 300;
+    self.drawIf = function() {
+      if (self.isRefreshed && self.photoUrl) {
+        loadImage(self.photoUrl, initCaman);
+      }
     };
 
     self.drawImage = function(photoUrl) {
-      loadImage(photoUrl, initCaman);
+      self.photoUrl = photoUrl;
+      self.drawIf();
     };
 
     function loadImage(source, callback) {
-      // var context = self.canvas.getContext('2d');
-      // var image = new Image();
-      // image.onload = function() {
-      //   context.drawImage(image, 0, 0, self.canvas.width, self.canvas.height);
-      //   callback();
-      // };
-      // image.src = source;
       callback();
     }
 
@@ -72,12 +72,14 @@ define([
     self.getCanvas = function() {
       return camanService.getCanvas();
     };
+
+    self.refresh = function(width) {
+      camanService.refresh(width);
+    };
   });
 
   editPhoto.controller('editPhotoController', function($scope, $stateParams, camanService) {
     var self = this;
-
-    // camanService.createCanvas();
 
     self.camanService = camanService;
     camanService.drawImage($stateParams.photoUrl);

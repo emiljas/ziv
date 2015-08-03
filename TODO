@@ -10,9 +10,14 @@ npm ls -g --depth=0
 co jest w projekcie do zaktualizowania:
 npm-check-updates
 
+adb tcpip 5555
+adb connect 192.168.1.2
 adb devices
 cordova run android --target=XXXX
 
+TODO:
+caman.js robi przetwarzanie w webworkerach?
+icons-slider-directive: wiele kliknięć
 
 dzięki testom z icons-slider-directive:
 nie używać service w directive

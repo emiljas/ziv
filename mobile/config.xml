@@ -8,6 +8,7 @@
         Apache Cordova Team
     </author>
     <content src="index.html" />
+    <preference name="orientation" value="portrait" />
     <plugin name="cordova-plugin-whitelist" version="1" />
     <plugin name="cordova-plugin-camera" spec="^1.1.0" />
     <access origin="*" />

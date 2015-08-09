@@ -15,7 +15,6 @@ define(function() {
           container.appendChild(canvas);
           var width = container.offsetWidth;
           var height = container.offsetHeight;
-          console.log(width, height, container.getBoundingClientRect(), container);
 
           photoController.refresh(Math.min(width, height));
         }, 0);

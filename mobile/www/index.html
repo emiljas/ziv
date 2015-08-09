@@ -9,6 +9,7 @@
   <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
   <link rel="stylesheet" type="text/css" href="css/index.css">
   <link rel="stylesheet" type="text/css" href="lib/jr-crop/dist/jr-crop.css">
+  <link rel="stylesheet" type="text/css" href="lib/ionicons/css/ionicons.min.css">
   <title>Hello World</title>
   <link href="lib/ionic/release/css/ionic.css" rel="stylesheet">
 </head>
@@ -42,11 +43,17 @@
   </script>
 
   <script id="templates/editPhoto.html" type="text/ng-template">
-  <style>
-  .scroll { height: 100%!important; }
-  </style>
+    <style>
+    .scroll { height: 100%!important; }
+    </style>
 
     <ion-view view-title="Edit photo">
+    <ion-nav-buttons side="primary">
+      <button ng-click="nextStep()" class="button">
+        continue <i class="icon ion-arrow-right-c"></i>
+      </button>
+    </ion-nav-buttons>
+
       <ion-content class="padding">
         <ziv-photo filter="filter"></ziv-photo>
       </ion-content>
@@ -62,11 +69,8 @@
         <p style="text-align: center;">
         </p>
 
-        <img width="300" height="100" ng-src="{{image}}">
-
-        <button ng-click="getPictureFromCamera()" style="width: 300px; height: 300px;">from camera</button>
-
-        <button ng-click="choosePicture()">choose</button>
+        <button ng-click="getPictureFromCamera()" class="button button-block button-calm">take photo</button>
+        <button ng-click="getPictureFromAlbum()" class="button button-block button-calm">choose existing</button>
 
       </ion-content>
     </ion-view>

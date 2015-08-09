@@ -21,8 +21,6 @@ define([
     };
 
     self.refresh = function(width) {
-      console.log(width);
-
       self.isRefreshed = true;
       var context = self.canvas.getContext('2d');
       self.canvas.width = width;
@@ -78,11 +76,76 @@ define([
     };
   });
 
-  editPhoto.controller('editPhotoController', function($scope, $stateParams, camanService) {
+  editPhoto.controller('editPhotoController',
+  function($scope, $stateParams, camanService, $cordovaFileTransfer) {
     var self = this;
 
     self.camanService = camanService;
     camanService.drawImage($stateParams.photoUrl);
+
+    $scope.nextStep = function() {
+      saveTempFile()
+      .then(function(url) {
+        return upload(url);
+      })
+      .catch(function(err) { console.log(err); });
+      // upload($stateParams.photoUrl);
+    };
+
+    function saveTempFile() {
+      return resolveFileSystemURL()
+      .then(function(dir) {
+        return getFile(dir);
+      })
+      .then(function(file) {
+        return createWriter(file);
+      })
+      .then(function(fileWriter) {
+        return saveCanvasBlob(fileWriter);
+      });
+    }
+
+    function resolveFileSystemURL() {
+      return new Promise(function(resolve, reject) {
+        var dirPath = cordova.file.cacheDirectory;
+        window.resolveLocalFileSystemURL(dirPath, resolve);
+      });
+    }
+
+    function getFile(dir) {
+      return new Promise(function(resolve, reject) {
+        dir.getFile('temp.png', {create:true}, resolve, reject);
+      });
+    }
+
+    function createWriter(file) {
+      return new Promise(function(resolve, reject) {
+        file.createWriter(function(fileWriter) {
+          resolve({
+            file: file,
+            fileWriter: fileWriter
+          });
+        });
+      });
+    }
+
+    function saveCanvasBlob(fileParams) {
+      return new Promise(function(resolve, reject) {
+        var file = fileParams.file;
+        var fileWriter = fileParams.fileWriter;
+        camanService.getCanvas().toBlob(function(blob) {
+          fileWriter.onwrite = function() {
+            resolve(file.toURL());
+          };
+          fileWriter.write(blob);
+        });
+      });
+    }
+
+    function upload(imageUrl) {
+      var url = 'http://192.168.1.198:3000/api/Photos/upload';
+      return $cordovaFileTransfer.upload(url, imageUrl);
+    }
 
     $scope.filters = [{
       name: 'sunrise',

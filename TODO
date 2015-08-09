@@ -10,14 +10,14 @@ npm ls -g --depth=0
 co jest w projekcie do zaktualizowania:
 npm-check-updates
 
-adb tcpip 5555
-adb connect 192.168.1.2
+adb connect 192.168.1.102
 adb devices
-cordova run android --target=XXXX
+cordova run android --target=192.168.1.102:5555
 
 TODO:
 caman.js robi przetwarzanie w webworkerach?
 icons-slider-directive: wiele kliknięć
+WOLNO slider / przetwarzanie DZIAŁA!
 
 dzięki testom z icons-slider-directive:
 nie używać service w directive

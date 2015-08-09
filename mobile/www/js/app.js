@@ -1,7 +1,8 @@
 define([
  'js/config',
  'js/shared/shared',
- 'js/edit-photo/edit-photo'
+ 'js/edit-photo/edit-photo',
+ 'js/polyfill/canvasToBlob'
 ], function(
   config
   ) {
@@ -38,7 +39,12 @@ define([
   });
 
   zivApp.controller('CameraController',
-  function($scope, $cordovaCamera, $cordovaFileTransfer, $state, $jrCrop, camanService) {
+  function($scope,
+    $cordovaCamera,
+    $cordovaFileTransfer,
+    $state,
+    $jrCrop,
+    camanService) {
     $scope.getPictureFromCamera = function() {
       var options = {
         destinationType: Camera.DestinationType.FILE_URI,
@@ -47,8 +53,6 @@ define([
       };
 
       $cordovaCamera.getPicture(options).then(function(imageUrl) {
-        $scope.image = imageUrl;
-
         $jrCrop.crop({
           url: imageUrl,
           width: 300,
@@ -59,22 +63,48 @@ define([
         }, function() {
         });
 
-        var url = 'http://192.168.1.198:3000/api/Photos/upload';
-        console.log('uploading');
-
-
-        // $cordovaFileTransfer.upload(url, imageUrl)
-        // .then(upload)
-        // .catch(upload);
+        upload(imageUrl);
 
       }, function(err) {
         console.log(err);
       });
     };
 
-    $scope.choosePicture = function() {
+    $scope.getPictureFromAlbum = function() {
+      var options = {
+        destinationType: Camera.DestinationType.FILE_URI,
+        sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM,
+        correctOrientation: true
+      };
 
+      $cordovaCamera.getPicture(options).then(function(imageUrl) {
+        $jrCrop.crop({
+          url: imageUrl,
+          width: 300,
+          height: 300
+        }).then(function(canvas) {
+          camanService.setCanvas(canvas);
+          $state.go('tabs.editPhoto', {photoUrl: imageUrl});
+        }, function() {
+        });
+
+        upload(imageUrl);
+
+      }, function(err) {
+        console.log(err);
+      });
     };
+
+    function upload(imageUrl) {
+      var url = 'http://192.168.1.198:3000/api/Photos/upload';
+      $cordovaFileTransfer.upload(url, imageUrl)
+      .then(function() {
+        console.log('upload success');
+      })
+      .catch(function() {
+        console.log(arguments);
+      });
+    }
 
     // function onSuccess(imageUrl) {
     //   $scope.image = imageUrl;

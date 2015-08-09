@@ -4,15 +4,18 @@ module.exports = function(Photo) {
 
   Photo.upload = function(ctx, query, cb) {
     var options = {
-      container: 'qwe'
+      container: 'photos'
     };
 
-    Photo.app.models.PhotoStorage.upload(ctx.req, ctx.res, options, function (err, fileObj) {
-      if(err) {
+    Photo.app.models.PhotoStorage.upload(
+      ctx.req,
+      ctx.res,
+      options,
+      function(err, fileObj) {
+      if (err) {
         cb();
-      }
-      else {
-        var data = { url: 'e' };
+      } else {
+        var data = {url: 'e'};
         Photo.create(data, cb);
       }
     });
@@ -21,12 +24,12 @@ module.exports = function(Photo) {
   Photo.remoteMethod(
     'upload',
     {
-      http: { verb: 'post' },
+      http: {verb: 'post'},
       accepts: [
-        { arg: 'ctx', type: 'object', http: { source: 'context' } },
-        { arg: 'query', type: 'object', http: { source: 'query' } }
+        {arg: 'ctx', type: 'object', http: {source: 'context'}},
+        {arg: 'query', type: 'object', http: {source: 'query'}}
       ],
-      returns: { root: 'true', type: 'object' }
+      returns: {root: 'true', type: 'object'}
     }
   );
 

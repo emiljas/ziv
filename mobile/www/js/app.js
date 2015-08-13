@@ -17,6 +17,60 @@ define([
 
     onDeviceReady: function() {
       app.receivedEvent('deviceready');
+
+
+
+
+
+
+
+
+
+
+
+
+function onSuccess(fileSystem) {
+    fileSystem.root.getDirectory("dir", {create: true}, function(dirEntry){
+        dirEntry.getFile("foo.json", {create: true}, function(fileEntry){
+            fileEntry.createWriter(function(writer){
+                writer.write(JSON.stringify(fooData));
+                console.log("OK");
+            }, onfail);
+        }, onfail);
+    }, onfail);
+}
+
+function onfail(error)
+{
+    console.log(error.code);
+}
+
+// request the persistent file system
+window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccess, onfail);
+
+
+
+
+
+
+
+
+
+
+
+      // for(var prop in cordova.file) {
+      //   console.log(prop, cordova.file[prop]);
+      // }
+
+
+      // for(var prop in window)
+      //   console.log(prop);
+      // window.emulator.File.requestFileSystem(function() {}, function() {});
+      //
+      // window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function() {}, function() {});
+
+      // var dirPath = cordova.file.cacheDirectory;
+      // window.resolveLocalFileSystemURL(dirPath, function() { console.log("WORKS"); });
     },
 
     receivedEvent: function(id) {
@@ -96,14 +150,14 @@ define([
     };
 
     function upload(imageUrl) {
-      var url = 'http://192.168.1.198:3000/api/Photos/upload';
-      $cordovaFileTransfer.upload(url, imageUrl)
-      .then(function() {
-        console.log('upload success');
-      })
-      .catch(function() {
-        console.log(arguments);
-      });
+      // var url = 'http://192.168.1.198:3000/api/Photos/upload';
+      // $cordovaFileTransfer.upload(url, imageUrl)
+      // .then(function() {
+      //   console.log('upload success');
+      // })
+      // .catch(function() {
+      //   console.log(arguments);
+      // });
     }
 
     // function onSuccess(imageUrl) {

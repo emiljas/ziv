@@ -29,24 +29,24 @@ define([
 
 
 
-function onSuccess(fileSystem) {
-    fileSystem.root.getDirectory("dir", {create: true}, function(dirEntry){
-        dirEntry.getFile("foo.json", {create: true}, function(fileEntry){
-            fileEntry.createWriter(function(writer){
-                writer.write(JSON.stringify(fooData));
-                console.log("OK");
-            }, onfail);
-        }, onfail);
-    }, onfail);
-}
-
-function onfail(error)
-{
-    console.log(error.code);
-}
+// function onSuccess(fileSystem) {
+//     fileSystem.root.getDirectory("dir", {create: true}, function(dirEntry){
+//         dirEntry.getFile("foo.json", {create: true}, function(fileEntry){
+//             fileEntry.createWriter(function(writer){
+//                 writer.write(JSON.stringify(fooData));
+//                 console.log("OK");
+//             }, onfail);
+//         }, onfail);
+//     }, onfail);
+// }
+//
+// function onfail(error)
+// {
+//     console.log(error.code);
+// }
 
 // request the persistent file system
-window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccess, onfail);
+// window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccess, onfail);
 
 
 

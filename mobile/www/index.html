@@ -49,7 +49,7 @@
 
     <ion-view view-title="Edit photo">
     <ion-nav-buttons side="primary">
-      <button ng-click="nextStep()" class="button">
+      <button id="ziv-edit-photo-continue-btn" ng-click="nextStep()" class="button">
         continue <i class="icon ion-arrow-right-c"></i>
       </button>
     </ion-nav-buttons>
@@ -69,7 +69,7 @@
         <p style="text-align: center;">
         </p>
 
-        <button id="xyzBtn" ng-click="getPictureFromCamera()" class="button button-block button-calm">take photo</button>
+        <button id="ziv-take-photo-btn" ng-click="getPictureFromCamera()" class="button button-block button-calm">take photo</button>
         <button ng-click="getPictureFromAlbum()" class="button button-block button-calm">choose existing</button>
 
       </ion-content>

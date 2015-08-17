@@ -1,5 +1,7 @@
 var wd = require('wd');
 var _ = require('lodash');
+var Promise = require('bluebird');
+var request = Promise.promisify(require('request'));
 
 var config = {
   host: 'localhost',
@@ -71,8 +73,26 @@ function test() {
   .then(function() {
     return driver.elementById('ziv-edit-photo-continue-btn').click();
   })
+  .then(function() {
+    return isPictureSave();
+  })
+  .then(function(isPictureSave) {
+    console.log(isPictureSave);
+  })
   .catch(function(err) {
     console.log('TEST ERR', err)
+  });
+}
+
+function isPictureSave() {
+  var url = 'http://192.168.1.104:3000/photos/image.jpg';
+  return request(url)
+  .spread(function(response) {
+    console.log(response.statusCode);
+    return Promise.resolve(response.statusCode == 200);
+  })
+  .catch(function(err) {
+    return Promise.resolve(false);
   });
 }
 

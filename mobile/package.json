@@ -9,7 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bluebird": "^2.9.34",
     "lodash": "^3.10.1",
+    "request": "^2.60.0",
     "selenium-webdriver": "^2.46.1",
     "wd": "^0.3.12"
   }

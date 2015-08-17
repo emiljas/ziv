@@ -84,33 +84,17 @@ define([
     camanService.drawImage($stateParams.photoUrl);
 
     $scope.nextStep = function() {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      // saveTempFile()
-      // .then(function(url) {
-      //   return upload(url);
-      // })
-      // .then(function() {
-      //   console.log("SUC", arguments);
-      // })
-      // .catch(function(err) {
-      //   console.log("ERR", err);
-      // });
-      // upload($stateParams.photoUrl);
+      saveTempFile()
+      .then(function(url) {
+        return upload(url);
+      })
+      .then(function() {
+        console.log('SUC', arguments);
+      })
+      .catch(function(err) {
+        console.log('ERR', err);
+      });
+      upload($stateParams.photoUrl);
     };
 
     function saveTempFile() {
@@ -128,10 +112,10 @@ define([
 
     function resolveFileSystemURL() {
       return new Promise(function(resolve, reject) {
-        // var dirPath = cordova.file.cacheDirectory;
+        var dirPath = cordova.file.cacheDirectory;
         // var dirPath = cordova.file.dataDirectory;
         // var dirPath = ""
-        // window.resolveLocalFileSystemURL(dirPath, resolve, reject);
+        window.resolveLocalFileSystemURL(dirPath, resolve, reject);
         // window.
       });
     }
@@ -171,7 +155,7 @@ define([
 
     function upload(imageUrl) {
       console.log("UPLOAD");
-      var url = 'http://192.168.1.198:3000/api/Photos/upload';
+      var url = 'http://192.168.1.104:3000/api/Photos/upload';
       return $cordovaFileTransfer.upload(url, imageUrl);
     }
 

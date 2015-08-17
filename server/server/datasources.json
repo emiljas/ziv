@@ -16,6 +16,6 @@
     "name": "fileSystem",
     "connector": "loopback-component-storage",
     "provider": "filesystem",
-    "root": "/home/emil/Pulpit/ziv"
+    "root": "/home/emil/Pulpit/ziv/server/client"
   }
 }

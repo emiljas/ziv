@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.8.17)  17 AUG 2015 22:04
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.8.17)  17 AUG 2015 23:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -847,38 +847,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 124--124
 
  []
 
-[1] [2
-
-]
-------------------------------------------------------------------------------
- Abstract Page
-------------------------------------------------------------------------------
-[3
-
-]
-------------------------------------------------------------------------------
- Acknowledgements
-------------------------------------------------------------------------------
-[4
-
-]
+[1]
 ------------------------------------------------------------------------------
  Table of Contents
 ------------------------------------------------------------------------------
-(./main.toc
-LaTeX Font Info:    Try loading font information for OT4+cmtt on input line 26.
-
- (/usr/share/texlive/texmf-dist/tex/latex/polski/ot4cmtt.fd
-File: ot4cmtt.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
-)
-[5
-
-
-])
+(./main.toc)
 \tf@toc=\write4
 \openout4 = `main.toc'.
 
- [6]
+ [2
+
+
+]
 ------------------------------------------------------------------------------
  List of Figures
 ------------------------------------------------------------------------------
@@ -886,7 +866,7 @@ File: ot4cmtt.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
 \tf@lof=\write5
 \openout5 = `main.lof'.
 
- [7
+ [3
 
 
 ]
@@ -897,38 +877,8 @@ File: ot4cmtt.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
 \tf@lot=\write6
 \openout6 = `main.lot'.
 
- [8
+ [4
 
-
-]
-------------------------------------------------------------------------------
- Abbreviations
-------------------------------------------------------------------------------
-[9
-
-
-
-]
-------------------------------------------------------------------------------
- Physical Constants
-------------------------------------------------------------------------------
-[10
-
-
-
-]
-------------------------------------------------------------------------------
- Symbols
-------------------------------------------------------------------------------
-[11
-
-
-
-]
-------------------------------------------------------------------------------
- Dedicatory
-------------------------------------------------------------------------------
-[12
 
 ] (./Chapters/Chapter1.tex
 Rozdzia\l  1.
@@ -947,115 +897,114 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 
 ] [2]
 LaTeX Font Info:    External font `plex10' loaded for size
-(Font)              <14.4> on input line 57.
+(Font)              <14.4> on input line 77.
 LaTeX Font Info:    External font `plex10' loaded for size
-(Font)              <10> on input line 57.
+(Font)              <10> on input line 77.
 LaTeX Font Info:    External font `plex10' loaded for size
-(Font)              <7> on input line 57.
+(Font)              <7> on input line 77.
 LaTeX Font Info:    External font `plex10' loaded for size
-(Font)              <12> on input line 61.
- [3] [4]
-[5] [6]
-
-LaTeX Font Warning: Font shape `OT4/cmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `OT4/cmtt/m/n' tried instead on input line 172.
-
-[7] [8] [9]
-
-Package natbib Warning: Citation `Reference3' on page 10 undefined on input lin
-e 234.
+(Font)              <12> on input line 81.
+LaTeX Font Info:    Try loading font information for OT4+cmtt on input line 83.
 
 
-Package natbib Warning: Citation `Reference2' on page 10 undefined on input lin
-e 234.
+(/usr/share/texlive/texmf-dist/tex/latex/polski/ot4cmtt.fd
+File: ot4cmtt.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
+)
+
+LaTeX Warning: Reference `FillingFile' on page 3 undefined on input line 83.
 
 
-Package natbib Warning: Citation `Reference1' on page 10 undefined on input lin
-e 234.
+LaTeX Warning: Reference `FillingFile' on page 3 undefined on input line 83.
 
 
-Package natbib Warning: Citation `Reference2' on page 10 undefined on input lin
-e 234.
+LaTeX Warning: Reference `ThesisConventions' on page 3 undefined on input line 
+83.
 
-
-Package natbib Warning: Citation `Reference1' on page 10 undefined on input lin
-e 234.
-
-
-Package natbib Warning: Citation `Reference3' on page 10 undefined on input lin
-e 234.
-
-[10]
-LaTeX Font Info:    External font `plex10' loaded for size
-(Font)              <9> on input line 236.
- <Figures/Electron.pdf, id=311, 398.3386pt x 284.52756pt>
-File: Figures/Electron.pdf Graphic file (type pdf)
-
-<use Figures/Electron.pdf>
-Package pdftex.def Info: Figures/Electron.pdf used on input line 256.
-(pdftex.def)             Requested size: 398.33762pt x 284.52686pt.
- [11] [12 <./Figures/Electron.pdf>] [13])
-(./Appendices/AppendixA.tex [14]
+[3]) (./Appendices/AppendixA.tex [4]
 Dodatek A.
 ------------------------------------------------------------------------------
  A Appendix Title Here
 ------------------------------------------------------------------------------
-) [15
+) [5
 
 ]
 ------------------------------------------------------------------------------
  Spis literatury
 ------------------------------------------------------------------------------
 No file main.bbl.
-
-Package natbib Warning: There were undefined citations.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 297.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 297.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 193.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 193.
 (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 297.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 297.
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: E9980D5119ADD7093D85540864DCFEF4;5465.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 193.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 193.
+
+
+Package rerunfilecheck Warning: File `main.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `main.out':
+(rerunfilecheck)             Before: B032888DE3915D3C3747D31065DCEAF0;2016
+(rerunfilecheck)             After:  91A9EEB4D127B12F015F8B6039B3F5AC;1877.
+
+LaTeX Warning: There were undefined references.
 
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 297.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 193.
  ) 
 Here is how much of TeX's memory you used:
- 13345 strings out of 494993
- 186371 string characters out of 6180621
- 252173 words of memory out of 5000000
- 16261 multiletter control sequences out of 15000+600000
- 28344 words of font info for 82 fonts, out of 8000000 for 9000
+ 13249 strings out of 494993
+ 185243 string characters out of 6180621
+ 251875 words of memory out of 5000000
+ 16212 multiletter control sequences out of 15000+600000
+ 24886 words of font info for 73 fonts, out of 8000000 for 9000
  34 hyphenation exceptions out of 8191
- 49i,12n,45p,776b,428s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/plrm.enc}{/usr/share/texliv
-e/texmf-dist/fonts/enc/dvips/pl/pltt.enc}{/usr/share/texlive/texmf-dist/fonts/e
-nc/dvips/pl/plms.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/plmi.enc
-}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/plit.enc}{/usr/share/texlive
-/texmf-dist/fonts/enc/dvips/pl/plsc.enc}</usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/amsfonts/symbols/msam7.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/pl/plbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plbx12.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plbx8.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/pl/plcsc10.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/pl/plmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/pl/plr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plr12.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plr6.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/pl/plr8.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/pl/plr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/pl/plsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plsy10.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plsy8.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/pl/plti10.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/pl/plti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/pl/pltt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/pltt12
-.pfb>
-Output written on main.pdf (28 pages, 200407 bytes).
+ 49i,12n,45p,579b,398s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{appendix.17} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.16} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.15} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.14} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{section.13} has been referenced but does not exist,
+ replaced by a fixed one
+
+pdfTeX warning (dest): name{section.12} has been referenced but does not exist,
+ replaced by a fixed one
+
+pdfTeX warning (dest): name{chapter.11} has been referenced but does not exist,
+ replaced by a fixed one
+
+pdfTeX warning (dest): name{dummy.8} has been referenced but does not exist, re
+placed by a fixed one
+
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/plms.enc}{/usr/share/texlive/
+texmf-dist/fonts/enc/dvips/pl/pltt.enc}{/usr/share/texlive/texmf-dist/fonts/enc
+/dvips/pl/plrm.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/plit.enc}{
+/usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/plsc.enc}</usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/symbols/msam7.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/pl/plbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/pl/plbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plbx8.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plcsc10.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/pl/plr10.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/pl/plr12.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/pl/plr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plsy10
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plti10.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/pl/plti12.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/pl/pltt10.pfb>
+Output written on main.pdf (10 pages, 109459 bytes).
 PDF statistics:
- 486 PDF objects out of 1000 (max. 8388607)
- 423 compressed objects within 5 object streams
- 73 named destinations out of 1000 (max. 500000)
- 262 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 193 PDF objects out of 1000 (max. 8388607)
+ 166 compressed objects within 2 object streams
+ 33 named destinations out of 1000 (max. 500000)
+ 97 words of extra memory for PDF output out of 10000 (max. 10000000)
 
